@@ -7,3 +7,5 @@ spring:
         enabled: true
         namespace: ********-****-****-****-************
         server-addr: localhost:8848
+server:
+  port: 0

@@ -26,6 +26,7 @@
         <module>ratel-registry</module>
         <module>ratel-common</module>
         <module>ratel-auth</module>
+        <module>ratel-samples</module>
     </modules>
 
     <dependencies>
