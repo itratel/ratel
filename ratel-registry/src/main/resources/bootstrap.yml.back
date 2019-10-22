@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ratel-registry
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        namespace: ********-****-****-****-************
+        server-addr: localhost:8848
