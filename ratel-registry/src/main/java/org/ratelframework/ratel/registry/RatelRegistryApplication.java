@@ -1,6 +1,6 @@
-package com.itratel.ratel.registry;
+package org.ratelframework.ratel.registry;
 
-import com.itratel.ratel.registry.annotation.EnableRegistryServer;
+import org.ratelframework.ratel.registry.annotation.EnableRegistryServer;
 import org.springframework.boot.SpringApplication;
 
 /**

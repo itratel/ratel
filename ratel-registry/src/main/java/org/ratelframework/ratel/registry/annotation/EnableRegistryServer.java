@@ -1,4 +1,4 @@
-package com.itratel.ratel.registry.annotation;
+package org.ratelframework.ratel.registry.annotation;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;

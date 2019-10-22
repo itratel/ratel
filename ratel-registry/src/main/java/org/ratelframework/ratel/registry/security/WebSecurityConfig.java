@@ -1,4 +1,4 @@
-package com.itratel.ratel.registry.security;
+package org.ratelframework.ratel.registry.security;
 
 import lombok.SneakyThrows;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -3,16 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>ratel-registry</module>
-    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.itratel</groupId>
+    <groupId>org.ratelframework</groupId>
     <artifactId>ratel</artifactId>
     <version>0.0.1</version>
     <name>ratel</name>
@@ -24,6 +21,12 @@
         <spring-cloud-alibaba.version>0.2.2.RELEASE</spring-cloud-alibaba.version>
         <alibaba-cloud.version>2.1.0.RELEASE</alibaba-cloud.version>
     </properties>
+
+    <modules>
+        <module>ratel-registry</module>
+        <module>ratel-common</module>
+        <module>ratel-auth</module>
+    </modules>
 
     <dependencies>
 <!--        <dependency>-->
@@ -96,7 +99,8 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+<!--                <version>${spring-cloud.version}</version>-->
+                <version>Greenwich.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -140,14 +144,14 @@
             </snapshots>
         </repository>
 
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
+<!--        <repository>-->
+<!--            <id>spring-milestones</id>-->
+<!--            <name>Spring Milestones</name>-->
+<!--            <url>https://repo.spring.io/milestone</url>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
 
         <!--阿里云代理Spring 官方仓库-->
         <repository>
