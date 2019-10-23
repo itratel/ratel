@@ -13,11 +13,11 @@ import static org.ratelframework.ratel.common.annotation.SubDataSource.NAME;
  * @since 0.0.1
  * @version 0.0.1
  */
-@Target({ ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
 @Inherited
-@Qualifier(value = NAME)
+@Documented
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Qualifier(SubDataSource.NAME)
 public @interface SubDataSource {
 
     String NAME = "subDataSource";
