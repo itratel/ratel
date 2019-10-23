@@ -18,8 +18,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 
 
-/**
- * *
+/***
  *  DataSource related auto-configuration.
  *  For the current being, there might be 3 kind of data-sources:
  *  1. Local data source -- for local business (e.g. user login/authentication, etc)
@@ -55,7 +54,7 @@ public class DataSourceAutoConfiguration {
         @ConditionalOnProperty(name = "ratel.datasource.primary.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
         @ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
         @ConfigurationProperties(prefix = "ratel.datasource.primary.config")
-        public DruidDataSource dataSource() {
+        public DruidDataSource primaryDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
     }
@@ -73,14 +72,14 @@ public class DataSourceAutoConfiguration {
         @ConditionalOnClass(DruidDataSource.class)
         @ConditionalOnProperty(name = "ratel.datasource.sub.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
         @ConfigurationProperties(prefix = "ratel.datasource.sub.config")
-        public DruidDataSource dataSourceDwh() {
+        public DruidDataSource subDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
     }
 
 
     /**
-     * Configuration for Detailed data source
+     * Configuration for candidate data source
      */
     @Configuration
     @ConditionalOnProperty(prefix = "ratel.datasource.candidate.config", name = "url")
@@ -92,7 +91,7 @@ public class DataSourceAutoConfiguration {
         @ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
         @ConditionalOnProperty(name = "ratel.datasource.candidate.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
         @ConfigurationProperties(prefix = "ratel.datasource.candidate.config")
-        public DruidDataSource dataSourceDwhMx() {
+        public DruidDataSource candidateDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
     }
