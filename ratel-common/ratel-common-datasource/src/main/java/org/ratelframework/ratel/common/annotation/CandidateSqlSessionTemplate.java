@@ -17,5 +17,5 @@ public @interface CandidateSqlSessionTemplate {
     /**
      * The qualifier name.
      */
-    String NAME = "sqlSessionTemplateDwhMx";
+    String NAME = "candidateSqlSessionTemplate";
 }

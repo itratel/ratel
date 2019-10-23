@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicator for the bean that stands for Main MyBatis SqlSession
+ * Indicator for the bean that stands for Sub MyBatis SqlSession
  */
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -17,5 +17,5 @@ public @interface SubSqlSessionTemplate {
     /**
      * The qualifier name.
      */
-    String NAME = "sqlSessionTemplateDwh";
+    String NAME = "subSqlSessionTemplate";
 }

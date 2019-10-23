@@ -36,34 +36,37 @@ public class MyBatisAutoConfiguration {
 	@Bean
 	@PrimarySqlSessionTemplate
 	@ConditionalOnPrimaryDataSource
-	@ConditionalOnProperty(name = "sdp.datasource.local.enable-sql-session-template", havingValue = "true")
+	@ConditionalOnProperty(name = "ratel.datasource.primary.enable-sql-session-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = PrimarySqlSessionTemplate.NAME)
-	public SqlSessionTemplate sqlSessionTemplate(MybatisProperties properties,
+	public SqlSessionTemplate primarySqlSessionTemplate(MybatisProperties properties,
 												 @PrimaryDataSource DataSource dataSource,
 												 ResourceLoader resourceLoader) throws Exception {
 		return new SqlSessionTemplate(this.createSqlSessionFactory(properties, dataSource, resourceLoader));
 	}
 
 	/**
-	 * Configuration mybatis template for Main data source
+	 * Configuration mybatis template for Sub data source
 	 */
 	@Bean
 	@SubSqlSessionTemplate
 	@ConditionalOnSubDataSource
-	@ConditionalOnProperty(name = "sdp.datasource.dwh.enable-sql-session-template", havingValue = "true")
+	@ConditionalOnProperty(name = "ratel.datasource.sub.enable-sql-session-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = SubSqlSessionTemplate.NAME)
-	public SqlSessionTemplate sqlSessionTemplateSub(MybatisProperties properties,
+	public SqlSessionTemplate subSqlSessionTemplateSub(MybatisProperties properties,
 													@SubDataSource DataSource dataSource,
 													ResourceLoader resourceLoader) throws Exception {
 		return new SqlSessionTemplate(this.createSqlSessionFactory(properties, dataSource, resourceLoader));
 	}
 
+	/**
+	 * Configuration mybatis template for candidate data source
+	 */
 	@Bean
 	@CandidateSqlSessionTemplate
 	@ConditionalOnCandidateDataSource
-	@ConditionalOnProperty(name = "sdp.datasource.dwhmx.enable-sql-session-template", havingValue = "true")
+	@ConditionalOnProperty(name = "ratel.datasource.candidate.enable-sql-session-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = CandidateSqlSessionTemplate.NAME)
-	public SqlSessionTemplate sqlSessionTemplateCandidate(MybatisProperties properties,
+	public SqlSessionTemplate candidateSqlSessionTemplateCandidate(MybatisProperties properties,
 													@CandidateDataSource DataSource dataSource,
 													ResourceLoader resourceLoader) throws Exception {
 		return new SqlSessionTemplate(this.createSqlSessionFactory(properties, dataSource, resourceLoader));

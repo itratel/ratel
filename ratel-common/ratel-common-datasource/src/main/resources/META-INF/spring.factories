@@ -1,6 +1,5 @@
 # Auto Configure
-# com.slyk.springcloud.framework.autoconfigure.jdbc.MyBatisAutoConfiguration,\
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.ratelframework.ratel.common.autoconfigure.datasource.DataSourceAutoConfiguration,\
-  com.slyk.springcloud.framework.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\
-  com.slyk.springcloud.framework.autoconfigure.demonstrate.DemonstrationAutoConfiguration
+  org.ratelframework.ratel.common.autoconfigure.datasource.JdbcTemplateAutoConfiguration,\
+  org.ratelframework.ratel.common.autoconfigure.datasource.MyBatisAutoConfiguration

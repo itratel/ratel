@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicator for the bean that stands for local JdbcTemplate
+ * Indicator for the bean that stands for primary JdbcTemplate
  */
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -18,5 +18,5 @@ public @interface PrimaryJdbcTemplate {
      * The qualifier name, note that this name is dedicated picked the same as the spring default one so that
      * we can override that.
      */
-    String NAME = "jdbcTemplate";
+    String NAME = "primaryJdbcTemplate";
 }

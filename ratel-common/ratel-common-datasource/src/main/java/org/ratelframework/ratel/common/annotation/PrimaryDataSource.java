@@ -3,8 +3,6 @@ package org.ratelframework.ratel.common.annotation;
 import org.springframework.beans.factory.annotation.Qualifier;
 import java.lang.annotation.*;
 
-import static org.ratelframework.ratel.common.annotation.PrimaryDataSource.NAME;
-
 /**
  * @author whd.java@gmail.com
  * @date 2019/10/22 15:03

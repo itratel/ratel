@@ -17,6 +17,6 @@ public @interface CandidateJdbcTemplate {
     /**
      * The qualifier name
      */
-    String NAME = "jdbcTemplateDwhMx";
+    String NAME = "candidateJdbcTemplate";
 
 }

@@ -19,14 +19,8 @@ import javax.sql.DataSource;
  *
  */
 @Data
-@ConfigurationProperties("sdp.datasource")
-class DataSourceProperties {
-
-    // we can use a java.util.Map to host all possible data sources, but at this stage, we're going to restrict data
-    // sources with support to local, dwh, and dwhmx, which looks silly somehow.
-    //
-    // On thing to note here is: the variable name must be the same as what defined in {@link DataSourceAutoConfiguration}
-    // otherwise, the generated metadata will not match.
+@ConfigurationProperties("ratel.datasource")
+public class DataSourceProperties {
 
     /**
      * Extended datasource properties for primary datasource

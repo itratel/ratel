@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.lang.annotation.*;
 
-import static org.ratelframework.ratel.common.annotation.SubDataSource.NAME;
-
 /**
  * @author whd.java@gmail.com
  * @date 2019/10/22 15:03

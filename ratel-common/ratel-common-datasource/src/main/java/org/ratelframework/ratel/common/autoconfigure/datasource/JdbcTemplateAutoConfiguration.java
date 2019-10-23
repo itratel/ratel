@@ -32,7 +32,7 @@ public class JdbcTemplateAutoConfiguration {
 	@ConditionalOnPrimaryDataSource
 	@ConditionalOnProperty(name = "sdp.datasource.primary.enable-jdbc-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = PrimaryJdbcTemplate.NAME)
-	public JdbcTemplate jdbcTemplate(@PrimaryDataSource DataSource dataSource) {
+	public JdbcTemplate primaryJdbcTemplate(@PrimaryDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
 	}
 
@@ -44,7 +44,7 @@ public class JdbcTemplateAutoConfiguration {
 	@ConditionalOnSubDataSource
 	@ConditionalOnProperty(name = "sdp.datasource.sub.enable-jdbc-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = SubJdbcTemplate.NAME)
-	public JdbcTemplate jdbcTemplateSub(@SubDataSource DataSource dataSource) {
+	public JdbcTemplate subJdbcTemplate(@SubDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
 	}
 
@@ -57,7 +57,7 @@ public class JdbcTemplateAutoConfiguration {
 	@ConditionalOnCandidateDataSource
 	@ConditionalOnProperty(name = "sdp.datasource.candidate.enable-jdbc-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = CandidateJdbcTemplate.NAME)
-	public JdbcTemplate jdbcTemplateCandidate(@CandidateDataSource DataSource dataSource) {
+	public JdbcTemplate candidateJdbcTemplate(@CandidateDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
 	}
 
