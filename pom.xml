@@ -35,7 +35,7 @@
     <modules>
         <module>ratel-registry</module>
         <module>ratel-common</module>
-        <module>ratel-auth</module>
+        <module>ratel-authorization</module>
         <module>ratel-samples</module>
         <module>ratel-visual</module>
     </modules>
