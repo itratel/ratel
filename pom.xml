@@ -6,20 +6,30 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.0.RELEASE</version>
+        <version>2.1.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.ratelframework</groupId>
     <artifactId>ratel</artifactId>
     <version>0.0.1</version>
     <name>ratel</name>
-    <description>Demo project for Spring Boot</description>
+    <description>
+        Ratel MicroService Architecture
+        这里的SpringCloud和Spring Boot的版本要匹配，可以参考以下了解，或者直接SpringCloud官网了解https://spring.io/projects/spring-cloud
+        Cloud Release 	Boot Version
+        Hoxton          2.2.x
+        Greenwich       2.1.x
+        Finchley        2.0.x
+        Edgware         1.5.x
+        Dalston         1.5.x
+    </description>
 
     <properties>
-        <java.version>13</java.version>
-        <spring-cloud.version>Hoxton.M3</spring-cloud.version>
+        <java.version>11</java.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
-        <spring-cloud-oauth.version>2.1.0.RELEASE</spring-cloud-oauth.version>
+        <spring-security-oauth.version>2.1.2.RELEASE</spring-security-oauth.version>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
     </properties>
 
     <modules>
@@ -27,6 +37,7 @@
         <module>ratel-common</module>
         <module>ratel-auth</module>
         <module>ratel-samples</module>
+        <module>ratel-visual</module>
     </modules>
 
     <dependencies>
@@ -39,17 +50,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -66,8 +78,13 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-oauth2</artifactId>
-                <version>${spring-cloud-oauth.version}</version>
+                <artifactId>spring-cloud-starter-security</artifactId>
+                <version>${spring-security-oauth.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${spring-security-oauth.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

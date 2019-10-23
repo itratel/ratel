@@ -1,0 +1,26 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.ratelframework</groupId>
+        <artifactId>ratel</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <artifactId>ratel-visual</artifactId>
+    <name>ratel-visual</name>
+    <packaging>pom</packaging>
+    <description>
+        可视化模块(主要包括在服务监控)
+    </description>
+    <modules>
+        <module>ratel-monitor</module>
+    </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

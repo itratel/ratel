@@ -1,6 +1,5 @@
 package org.ratelframework.ratel.order.controller;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -24,7 +23,6 @@ public class OrderController {
 
     private final LoadBalancerClient loadBalancerClient;
 
-    @SentinelResource("hello")
     @GetMapping("test-hello")
     public String testHello(String name) {
         ServiceInstance serviceInstance = loadBalancerClient.choose("nacos-product-service");

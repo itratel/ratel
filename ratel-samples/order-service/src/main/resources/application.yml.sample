@@ -1,10 +1,29 @@
+server:
+  port: 0
+
 spring:
   application:
-    name: nacos-order-service
+    name: order-service
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
         namespace: ********-****-****-****-************
-server:
-  port: 8080
+  profiles:
+    active: dev
+  boot:
+    admin:
+      client:
+        url: localhost:8080
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: '*'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
+
