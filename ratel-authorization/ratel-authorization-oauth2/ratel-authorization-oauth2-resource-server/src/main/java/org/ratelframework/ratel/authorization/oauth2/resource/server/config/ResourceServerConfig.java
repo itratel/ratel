@@ -18,21 +18,14 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private static final String DEMO_RESOURCE_ID = "order";
-
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
-    }
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-            .anonymous()
-            .and()
             .authorizeRequests()
-            .antMatchers("/product/**")
-            .access("#oauth2.hasScope('select') and hasPermission('delete')")
-            .antMatchers("/order/**").authenticated();
+//            .antMatchers("/product/**")
+//            .access("#oauth2.hasScope('select') and hasPermission('delete')")
+//            .antMatchers("/order/**")
+            .antMatchers("/api/test/**")
+                .authenticated();
     }
 }

@@ -1,5 +1,6 @@
 package org.ratelframework.ratel.authorization.oauth2.server.config;
 
+import com.nimbusds.oauth2.sdk.GrantType;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.authorization.oauth2.server.constant.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,7 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.nimbusds.oauth2.sdk.GrantType.CLIENT_CREDENTIALS;
-import static com.nimbusds.oauth2.sdk.GrantType.PASSWORD;
+import static com.nimbusds.oauth2.sdk.GrantType.*;
 
 
 /**
@@ -39,7 +39,14 @@ import static com.nimbusds.oauth2.sdk.GrantType.PASSWORD;
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private static final String DEMO_RESOURCE_ID = "order";
+    /***
+     * ACCESS_TOKEN过期时间，单位是秒
+     */
+    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 7200;
+    /***
+     * REFRESH_TOKEN过期时间，单位是秒
+     */
+    private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 7200;
 
     private final AuthenticationManager authenticationManager;
 
@@ -47,21 +54,22 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final UserDetailsService userDetailsService;
 
+    /***
+     * 配置appId和appSecret和callbackUrl
+     * @param clients 客户端配置
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        //配置两个客户端,一个用于password认证一个用于client认证
+        //如果需要合作机构需要做Oauth2认证的话，第一步操作是什么？
+        //1.获取一个appId和appSecret,一般情况下是从数据库或者redis查询
         clients.inMemory().withClient("client_1")
-                .resourceIds(DEMO_RESOURCE_ID)
-                .authorizedGrantTypes(CLIENT_CREDENTIALS.getValue())
-                .scopes("select")
-                .authorities("oauth2")
                 .secret("123456")
-                .and().withClient("client_2")
-                .resourceIds(DEMO_RESOURCE_ID)
-                .authorizedGrantTypes(PASSWORD.getValue(), "refresh_token")
-                .scopes("select")
-                .authorities("oauth2")
-                .secret("123456");
+                .redirectUris("http://www.baidu.com")
+                .authorizedGrantTypes(AUTHORIZATION_CODE.getValue(), PASSWORD.getValue(), REFRESH_TOKEN.getValue())
+                .scopes("all")
+                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
+                .refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
     }
 
     @Override
@@ -70,7 +78,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenStore(new RedisTokenStore(redisConnectionFactory))
                 .tokenStore(new InMemoryTokenStore())
                 .tokenEnhancer(tokenEnhancer())
+
                 .authenticationManager(authenticationManager)
+                //必须加上这个，否则刷新令牌会报错
                 .userDetailsService(userDetailsService)
                 // 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
