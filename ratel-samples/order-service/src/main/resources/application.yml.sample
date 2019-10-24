@@ -1,5 +1,7 @@
 server:
   port: 0
+  servlet:
+    context-path: /order
 
 spring:
   application:
@@ -8,7 +10,7 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-        namespace: ********-****-****-****-************
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df
   profiles:
     active: dev
   boot:

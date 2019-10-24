@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: ratel-gateway
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df
+        server-addr: localhost:8848
+    gateway:
+      enabled: true
+      routes:
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1

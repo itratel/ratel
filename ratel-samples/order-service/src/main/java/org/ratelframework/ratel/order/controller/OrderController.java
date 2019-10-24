@@ -1,10 +1,12 @@
 package org.ratelframework.ratel.order.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.ratelframework.ratel.order.feign.ProductFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,10 +25,22 @@ public class OrderController {
 
     private final LoadBalancerClient loadBalancerClient;
 
-    @GetMapping("test-hello")
-    public String testHello(String name) {
-        ServiceInstance serviceInstance = loadBalancerClient.choose("nacos-product-service");
+    private final ProductFeignService productFeignService;
+
+    @GetMapping("/testHello")
+    public String testHello(@RequestParam("name") String name) {
+        ServiceInstance serviceInstance = loadBalancerClient.choose("product-service");
         URI uri = serviceInstance.getUri();
         return template.getForObject(uri + "/hello?name=" + name, String.class);
+    }
+
+    @GetMapping("/helloFeign")
+    public String helloFeign(@RequestParam("name") String name) {
+        return productFeignService.hello(name);
+    }
+
+    @GetMapping("/hi")
+    public String hello(@RequestParam("name") String name) {
+        return "hello" + name;
     }
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
@@ -16,11 +17,14 @@ import javax.sql.DataSource;
  *     \@ConfiguationProperites(prefix = "some.prefix") to specific DataSource bean. Refer to
  *     {@link DataSourceAutoConfiguration} for more.
  * 2). Extended part of the datasource configuration is contributed here.
- *
+ * @author whd.java@gmail.com
  */
 @Data
-@ConfigurationProperties("ratel.datasource")
+@Component
+@ConfigurationProperties(DataSourceProperties.DATASOURCE_PREFIX)
 public class DataSourceProperties {
+
+    public static final String DATASOURCE_PREFIX = "ratel.datasource";
 
     /**
      * Extended datasource properties for primary datasource
@@ -43,18 +47,18 @@ public class DataSourceProperties {
         /**
          * Should JdbcTemplate support be turned on.
          *
-         * @see JdbcTemplateAutoConfiguration#jdbcTemplate(DataSource)
-         * @see JdbcTemplateAutoConfiguration#jdbcTemplateDwh(DataSource)
-         * @see JdbcTemplateAutoConfiguration#jdbcTemplateDwhMx(DataSource)
+         * @see JdbcTemplateAutoConfiguration#primaryJdbcTemplate(DataSource)
+         * @see JdbcTemplateAutoConfiguration#subJdbcTemplate(DataSource)
+         * @see JdbcTemplateAutoConfiguration#candidateJdbcTemplate(DataSource)
          */
         private boolean enableJdbcTemplate = false;
 
         /**
          * Should MyBatis support be turned on.
          *
-         * @see MyBatisAutoConfiguration#sqlSessionTemplate(MybatisProperties, DataSource, ResourceLoader)
-         * @see MyBatisAutoConfiguration#sqlSessionTemplateDwh(MybatisProperties, DataSource, ResourceLoader)
-         * @see MyBatisAutoConfiguration#sqlSessionTemplateDwhMx(MybatisProperties, DataSource, ResourceLoader)
+         * @see MyBatisAutoConfiguration#primarySqlSessionTemplate(MybatisProperties, DataSource, ResourceLoader)
+         * @see MyBatisAutoConfiguration#subSqlSessionTemplateSub(MybatisProperties, DataSource, ResourceLoader)
+         * @see MyBatisAutoConfiguration#candidateSqlSessionTemplateCandidate(MybatisProperties, DataSource, ResourceLoader)
          */
         private boolean enableSqlSessionTemplate = false;
     }
