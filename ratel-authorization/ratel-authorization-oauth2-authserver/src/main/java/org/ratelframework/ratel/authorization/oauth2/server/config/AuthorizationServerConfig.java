@@ -1,6 +1,5 @@
 package org.ratelframework.ratel.authorization.oauth2.server.config;
 
-import com.nimbusds.oauth2.sdk.GrantType;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.authorization.oauth2.server.constant.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;

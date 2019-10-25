@@ -6,8 +6,8 @@
         <artifactId>ratel</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>ratel-visual</artifactId>
-    <name>ratel-visual</name>
+    <artifactId>ratel-system</artifactId>
+    <name>ratel-system</name>
     <packaging>pom</packaging>
     <description>
         可视化模块(主要包括在服务监控)

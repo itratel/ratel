@@ -35,10 +35,11 @@
     <modules>
         <module>ratel-authorization</module>
         <module>ratel-common</module>
-        <module>ratel-registry</module>
         <module>ratel-gateway</module>
+        <module>ratel-registry</module>
         <module>ratel-samples</module>
-        <module>ratel-visual</module>
+        <module>ratel-system</module>
+        <module>ratel-upms</module>
     </modules>
 
     <dependencies>
