@@ -6,17 +6,17 @@ import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 
 /**
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/10 11:17
  * @apiNote 用户属性松散绑定为对象和其他数据结构
+ * @version 0.0.1
  * @since 0.0.1
  */
 @Slf4j
@@ -48,9 +48,7 @@ public class PropertiesContext implements EnvironmentAware {
      * @return {@link Binder}
      */
     public static Binder getBinder() {
-        if (Objects.isNull(environment)) {
-            throw new RuntimeException("环境变量为空");
-        }
+        Assert.notNull(environment, "环境变量为空");
         return Binder.get(environment);
     }
 

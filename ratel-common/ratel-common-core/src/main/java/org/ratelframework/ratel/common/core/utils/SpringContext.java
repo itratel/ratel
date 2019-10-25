@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+
+import java.util.Objects;
 
 /**
  * @author whd.java@gmail.com
@@ -43,7 +46,6 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
     /**
      * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getBean(String name) {
         return (T) applicationContext.getBean(name);
     }
@@ -70,9 +72,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
      * @param event 事件
      */
     public static void publishEvent(ApplicationEvent event) {
-        if (applicationContext == null) {
-            return;
-        }
+        Assert.notNull(applicationContext, "上下文为空");
         applicationContext.publishEvent(event);
     }
 
