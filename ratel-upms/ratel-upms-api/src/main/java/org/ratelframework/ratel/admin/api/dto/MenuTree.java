@@ -16,7 +16,7 @@
 
 package org.ratelframework.ratel.admin.api.dto;
 
-import com.pig4cloud.pig.admin.api.vo.MenuVO;
+import org.ratelframework.ratel.admin.api.vo.MenuVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

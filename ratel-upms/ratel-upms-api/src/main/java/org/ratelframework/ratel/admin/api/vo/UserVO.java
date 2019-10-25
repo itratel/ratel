@@ -16,7 +16,7 @@
 
 package org.ratelframework.ratel.admin.api.vo;
 
-import com.pig4cloud.pig.admin.api.entity.SysRole;
+import org.ratelframework.ratel.admin.api.entity.SysRole;
 import lombok.Data;
 
 import java.io.Serializable;

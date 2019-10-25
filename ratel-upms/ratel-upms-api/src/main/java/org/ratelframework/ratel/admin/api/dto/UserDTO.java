@@ -16,7 +16,7 @@
 
 package org.ratelframework.ratel.admin.api.dto;
 
-import com.pig4cloud.pig.admin.api.entity.SysUser;
+import org.ratelframework.ratel.admin.api.entity.SysUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
