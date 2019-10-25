@@ -8,12 +8,8 @@
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ratel-authorization-oauth2</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>ratel-authorization-oauth2-authserver</module>
-        <module>ratel-authorization-oauth2-resource-server</module>
-    </modules>
+
+    <artifactId>ratel-authorization-oauth2-authserver</artifactId>
 
 
 </project>
