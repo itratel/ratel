@@ -3,6 +3,7 @@ package org.ratelframework.ratel.authorization.oauth2.server.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @apiNote Describe the function of this class in one sentence
  */
 @Component
+@EnableWebSecurity
 public class AuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
