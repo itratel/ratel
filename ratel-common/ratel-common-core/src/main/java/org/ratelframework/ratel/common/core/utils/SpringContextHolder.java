@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.util.Objects;
-
 /**
  * @author whd.java@gmail.com
  * @date 2019/10/03 18:34
@@ -21,7 +19,7 @@ import java.util.Objects;
 @Slf4j
 @Component
 @Lazy(false)
-public class SpringContext implements ApplicationContextAware, DisposableBean {
+public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
     private static ApplicationContext applicationContext = null;
 
@@ -40,7 +38,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringContext.applicationContext = applicationContext;
+        SpringContextHolder.applicationContext = applicationContext;
     }
 
     /**
@@ -62,7 +60,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
      */
     public static void clear() {
         if (log.isDebugEnabled()) {
-            log.debug("清除SpringPropertiesContext中的ApplicationContext: {}", applicationContext);
+            log.debug("清除SpringContext中的ApplicationContext: {}", applicationContext);
         }
         applicationContext = null;
     }

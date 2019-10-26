@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class PropertiesContext implements EnvironmentAware {
+public class EnvironmentContextHolder implements EnvironmentAware {
 
     private static Environment environment = null;
 
@@ -32,7 +32,7 @@ public class PropertiesContext implements EnvironmentAware {
      */
     @Override
     public void setEnvironment(Environment environment) {
-        PropertiesContext.environment = environment;
+        EnvironmentContextHolder.environment = environment;
     }
 
     /***

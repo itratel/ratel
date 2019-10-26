@@ -13,5 +13,5 @@ public class SecurityConstants {
 
     public static final String OAUTH_PREFIX = "oauth:";
 
-    public static final Object PROJECT_LICENSE = "made by itratel";
+    public static final String PROJECT_LICENSE = "made by itratel";
 }

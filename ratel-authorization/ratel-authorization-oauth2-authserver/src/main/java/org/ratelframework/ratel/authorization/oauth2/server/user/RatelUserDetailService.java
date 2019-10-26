@@ -3,6 +3,7 @@ package org.ratelframework.ratel.authorization.oauth2.server.user;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * @author whd.java@gmail.com
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @since 0.0.1
  * @version 0.0.1
  */
+@Service
 public class RatelUserDetailService implements UserDetailsService {
 
     @Override

@@ -35,7 +35,7 @@ import static com.nimbusds.oauth2.sdk.GrantType.*;
  */
 @Configuration
 @EnableAuthorizationServer
-@RequiredArgsConstructor(onConstructor__={@Autowired})
+//@RequiredArgsConstructor(onConstructor__={@Autowired})
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /***
@@ -47,11 +47,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 7200;
 
-    private final AuthenticationManager authenticationManager;
-
-    private final RedisConnectionFactory redisConnectionFactory;
-
-    private final UserDetailsService userDetailsService;
+//    private final AuthenticationManager authenticationManager;
+//
+//    private final RedisConnectionFactory redisConnectionFactory;
+//
+//    private final UserDetailsService userDetailsService;
 
     /***
      * 配置appId和appSecret和callbackUrl
@@ -62,30 +62,43 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //如果需要合作机构需要做Oauth2认证的话，第一步操作是什么？
         //1.获取一个appId和appSecret,一般情况下是从数据库或者redis查询
-        clients.inMemory().withClient("client_1")
+        clients.inMemory()
+                //某应用在此平台申请的client_id，相当于微信开发平台的开发接入应用的appId
+                .withClient("client_1")
+                //某平台在此平台上申请对应的secret，相当于微信开发平台的开发接入应用的appKey(appSecret)
                 .secret("123456")
-                .redirectUris("http://www.baidu.com")
+                //回调地址
+                .redirectUris("http://www.itratel.com")
+                //授权类型
                 .authorizedGrantTypes(AUTHORIZATION_CODE.getValue(), PASSWORD.getValue(), REFRESH_TOKEN.getValue())
+                //授权范围
                 .scopes("all")
+                //accessToken有效时间
                 .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
+                //refreshToken有效时间
                 .refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
     }
 
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints
-                .tokenStore(new RedisTokenStore(redisConnectionFactory))
-                .tokenStore(new InMemoryTokenStore())
-                .tokenEnhancer(tokenEnhancer())
+//    /***
+//     * 认证服务端点配置
+//     * @param endpoints 端点
+//     * @throws Exception
+//     */
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//        endpoints
+//                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+//                .tokenStore(new InMemoryTokenStore())
+//                .tokenEnhancer(tokenEnhancer())
 
-                .authenticationManager(authenticationManager)
+//                .authenticationManager(authenticationManager)
                 //必须加上这个，否则刷新令牌会报错
-                .userDetailsService(userDetailsService)
+//                .userDetailsService(userDetailsService)
                 // 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+//                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
 
-        endpoints.reuseRefreshTokens(true);
-    }
+//        endpoints.reuseRefreshTokens(true);
+//    }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
@@ -95,21 +108,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .checkTokenAccess("permitAll()");
     }
 
-    @Bean
-    public TokenStore tokenStore() {
-        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-        tokenStore.setPrefix(SecurityConstants.PROJECT_PREFIX + SecurityConstants.OAUTH_PREFIX);
-        return tokenStore;
-    }
+//    @Bean
+//    public TokenStore tokenStore() {
+//        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
+//        tokenStore.setPrefix(SecurityConstants.PROJECT_PREFIX + SecurityConstants.OAUTH_PREFIX);
+//        return tokenStore;
+//    }
 
-    @Bean
-    public TokenEnhancer tokenEnhancer() {
-        return (accessToken, authentication) -> {
-            final Map<String, Object> additionalInfo = new HashMap<>(1);
-            additionalInfo.put("license", SecurityConstants.PROJECT_LICENSE);
-            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
-            return accessToken;
-        };
-    }
+//    @Bean
+//    public TokenEnhancer tokenEnhancer() {
+//        return (accessToken, authentication) -> {
+//            final Map<String, Object> additionalInfo = new HashMap<>(1);
+//            additionalInfo.put("license", SecurityConstants.PROJECT_LICENSE);
+//            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+//            return accessToken;
+//        };
+//    }
 
 }
