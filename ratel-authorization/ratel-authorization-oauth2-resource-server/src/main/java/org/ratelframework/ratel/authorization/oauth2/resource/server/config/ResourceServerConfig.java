@@ -21,9 +21,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-//            .antMatchers("/product/**")
-//            .access("#oauth2.hasScope('select') and hasPermission('delete')")
-//            .antMatchers("/order/**")
             .antMatchers("/api/test/**")
                 .authenticated();
     }

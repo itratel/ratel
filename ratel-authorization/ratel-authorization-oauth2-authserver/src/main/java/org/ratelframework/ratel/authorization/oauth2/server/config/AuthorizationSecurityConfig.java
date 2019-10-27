@@ -18,20 +18,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class AuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
-//
-//    /**
-//     * 拦截所有请求，使用httpBasic认证
-//     * @param http
-//     * @throws Exception
-//     */
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().antMatchers("/**")
-//                .fullyAuthenticated().and().httpBasic();
-//    }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    /**
+     * 拦截所有请求，使用httpBasic认证
+     * @param http
+     * @throws Exception
+     */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/**")
+                .fullyAuthenticated().and().httpBasic();
+    }
 }
