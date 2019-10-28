@@ -9,6 +9,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -35,7 +36,7 @@ import static com.nimbusds.oauth2.sdk.GrantType.*;
  */
 @Configuration
 @EnableAuthorizationServer
-//@RequiredArgsConstructor(onConstructor__={@Autowired})
+@RequiredArgsConstructor(onConstructor__={@Autowired})
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /***
@@ -46,6 +47,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * REFRESH_TOKEN过期时间，单位是秒
      */
     private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 7200;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
 //    private final AuthenticationManager authenticationManager;
 //
@@ -66,7 +69,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //某应用在此平台申请的client_id，相当于微信开发平台的开发接入应用的appId
                 .withClient("client_1")
                 //某平台在此平台上申请对应的secret，相当于微信开发平台的开发接入应用的appKey(appSecret)
-                .secret("123456")
+                .secret(passwordEncoder.encode("123456"))
                 //回调地址
                 .redirectUris("http://www.itratel.com")
                 //授权类型
