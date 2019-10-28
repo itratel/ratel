@@ -18,7 +18,7 @@ spring:
         name: ratel
         password: 123456
     redis:
-      host: 120.78.190.213
+      host: localhost
       password: 123456
       port: 6379
   boot:
