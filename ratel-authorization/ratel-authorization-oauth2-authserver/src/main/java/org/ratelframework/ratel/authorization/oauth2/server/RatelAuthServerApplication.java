@@ -6,9 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/25 9:32
  * @apiNote Describe the function of this class in one sentence
+ * @version 0.0.1
  * @since 0.0.1
  */
 @EnableDiscoveryClient
