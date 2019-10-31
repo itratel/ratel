@@ -20,6 +20,12 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-upms-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
         <!--号称世界上最快的连接池-->
         <dependency>
             <groupId>com.zaxxer</groupId>
