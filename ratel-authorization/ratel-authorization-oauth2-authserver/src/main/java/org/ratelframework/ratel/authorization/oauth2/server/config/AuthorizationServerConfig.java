@@ -46,23 +46,6 @@ import static com.nimbusds.oauth2.sdk.GrantType.*;
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    /***
-     * ACCESS_TOKEN过期时间，单位是秒
-     */
-    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 7200;
-    /***
-     * REFRESH_TOKEN过期时间，单位是秒
-     */
-    private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 7200;
-
-    private final BCryptPasswordEncoder passwordEncoder;
-
-//    private final AuthenticationManager authenticationManager;
-//
-//    private final RedisConnectionFactory redisConnectionFactory;
-//
-//    private final UserDetailsService userDetailsService;
-
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -88,12 +71,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore());
-//                .tokenEnhancer(tokenEnhancer())
-//                .authenticationManager(authenticationManager)
-//                必须加上这个，否则刷新令牌会报错
-//                .userDetailsService(userDetailsService)
-//                 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
-//                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
         endpoints.reuseRefreshTokens(true);
     }
 
