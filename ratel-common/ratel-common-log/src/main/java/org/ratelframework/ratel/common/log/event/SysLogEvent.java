@@ -1,7 +1,7 @@
 package org.ratelframework.ratel.common.log.event;
 
 import org.springframework.context.ApplicationEvent;
-import org.ratelframework.ratel.admin.api.entity.SysLog;
+import org.ratelframework.ratel.upms.api.entity.SysLog;
 
 /**
  * Custom system log event

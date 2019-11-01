@@ -4,7 +4,7 @@ import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.HttpUtil;
 import lombok.experimental.UtilityClass;
-import org.ratelframework.ratel.admin.api.entity.SysLog;
+import org.ratelframework.ratel.upms.api.entity.SysLog;
 import org.ratelframework.ratel.common.core.constant.CommonConstants;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

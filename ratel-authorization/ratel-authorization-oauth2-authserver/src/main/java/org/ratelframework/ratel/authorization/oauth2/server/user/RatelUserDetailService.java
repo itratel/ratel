@@ -1,7 +1,7 @@
 package org.ratelframework.ratel.authorization.oauth2.server.user;
 
 import lombok.Setter;
-import org.ratelframework.ratel.admin.api.feign.RemoteUserService;
+import org.ratelframework.ratel.upms.api.feign.RemoteUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

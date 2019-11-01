@@ -2,13 +2,13 @@ package org.ratelframework.ratel.common.log.event;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ratelframework.ratel.admin.api.feign.RemoteLogService;
+import org.ratelframework.ratel.upms.api.feign.RemoteLogService;
 import org.ratelframework.ratel.common.core.constant.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Async;
-import org.ratelframework.ratel.admin.api.entity.SysLog;
+import org.ratelframework.ratel.upms.api.entity.SysLog;
 
 
 /**

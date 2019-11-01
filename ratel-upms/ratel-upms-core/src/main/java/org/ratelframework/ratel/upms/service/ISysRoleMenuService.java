@@ -1,0 +1,16 @@
+package org.ratelframework.ratel.upms.service;
+
+import org.ratelframework.ratel.upms.api.entity.SysRoleMenu;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * <p>
+ * 角色菜单表 服务类
+ * </p>
+ *
+ * @author whd.java@gmail.com
+ * @since 2019-11-01
+ */
+public interface ISysRoleMenuService extends IService<SysRoleMenu> {
+
+}

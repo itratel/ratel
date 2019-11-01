@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.ratelframework.ratel.admin.api.entity.SysLog;
+import org.ratelframework.ratel.upms.api.entity.SysLog;
 import org.ratelframework.ratel.common.core.utils.SpringContextHolder;
 import org.ratelframework.ratel.common.log.event.SysLogEvent;
 import org.ratelframework.ratel.common.log.util.SysLogUtils;
