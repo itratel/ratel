@@ -10,18 +10,24 @@ import org.ratelframework.ratel.admin.api.entity.SysLog;
 import org.ratelframework.ratel.common.core.utils.SpringContextHolder;
 import org.ratelframework.ratel.common.log.event.SysLogEvent;
 import org.ratelframework.ratel.common.log.util.SysLogUtils;
+import org.springframework.util.StopWatch;
 
 /**
- * 操作日志使用spring event异步入库
- *
- * @author whd.java@gmail.com
+ * <p>
+ *  SysLogAspect is used for recording log in Spring Async event notification, Mainly for
+ *  improving log efficiency.
+ * </p>
+ * @author whd.java@mail.com
+ * @date 2019/11/1 15:17
+ * @version 0.0.1
+ * @since 0.0.1
  */
 @Aspect
 @Slf4j
 public class SysLogAspect {
 
-    @Around("@annotation(sysLog)")
     @SneakyThrows
+    @Around("@annotation(sysLog)")
     public Object around(ProceedingJoinPoint point,
                          org.ratelframework.ratel.common.log.annotation.SysLog sysLog) {
         String strClassName = point.getTarget().getClass().getName();
@@ -31,10 +37,11 @@ public class SysLogAspect {
         SysLog logVo = SysLogUtils.getSysLog();
         logVo.setTitle(sysLog.value());
         // 发送异步日志事件
-        Long startTime = System.currentTimeMillis();
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         Object obj = point.proceed();
-        Long endTime = System.currentTimeMillis();
-        logVo.setTime(endTime - startTime);
+        stopWatch.stop();
+        logVo.setTime(stopWatch.getTotalTimeMillis());
         SpringContextHolder.publishEvent(new SysLogEvent(logVo));
         return obj;
     }

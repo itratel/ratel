@@ -65,7 +65,7 @@ public class DataSourceAutoConfiguration {
     @Configuration
     @ConditionalOnProperty(prefix = "ratel.datasource.sub.config", name = "url")
     @ConditionalOnMissingSubDataSource
-    static class DwhDataSourceConfiguration {
+    static class SubDataSourceConfiguration {
 
         @Bean
         @SubDataSource

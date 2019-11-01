@@ -30,7 +30,7 @@ public class JdbcTemplateAutoConfiguration {
 	@Bean
 	@PrimaryJdbcTemplate
 	@ConditionalOnPrimaryDataSource
-	@ConditionalOnProperty(name = "sdp.datasource.primary.enable-jdbc-template", havingValue = "true")
+	@ConditionalOnProperty(name = "ratel.datasource.primary.enable-jdbc-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = PrimaryJdbcTemplate.NAME)
 	public JdbcTemplate primaryJdbcTemplate(@PrimaryDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
@@ -42,7 +42,7 @@ public class JdbcTemplateAutoConfiguration {
 	@Bean
 	@SubJdbcTemplate
 	@ConditionalOnSubDataSource
-	@ConditionalOnProperty(name = "sdp.datasource.sub.enable-jdbc-template", havingValue = "true")
+	@ConditionalOnProperty(name = "ratel.datasource.sub.enable-jdbc-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = SubJdbcTemplate.NAME)
 	public JdbcTemplate subJdbcTemplate(@SubDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
@@ -55,7 +55,7 @@ public class JdbcTemplateAutoConfiguration {
 	@Bean
 	@CandidateJdbcTemplate
 	@ConditionalOnCandidateDataSource
-	@ConditionalOnProperty(name = "sdp.datasource.candidate.enable-jdbc-template", havingValue = "true")
+	@ConditionalOnProperty(name = "ratel.datasource.candidate.enable-jdbc-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = CandidateJdbcTemplate.NAME)
 	public JdbcTemplate candidateJdbcTemplate(@CandidateDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);

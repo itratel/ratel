@@ -17,13 +17,17 @@ import java.util.Objects;
 
 
 /**
- * 系统日志工具类
- *
+ * System log tools for get log info
  * @author whd.java@gamil.com
+ * @date 2019/11/1 15:28
  */
 @UtilityClass
 public class SysLogUtils {
 
+	/***
+	 * Obtain system log info from client request
+	 * @return {SysLog}
+	 */
 	public SysLog getSysLog() {
 		HttpServletRequest request = ((ServletRequestAttributes) Objects
 			.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
@@ -40,8 +44,7 @@ public class SysLogUtils {
 	}
 
 	/**
-	 * 获取客户端
-	 *
+	 * Obtain current client id
 	 * @return clientId
 	 */
 	private String getClientId() {
@@ -54,8 +57,7 @@ public class SysLogUtils {
 	}
 
 	/**
-	 * 获取用户名称
-	 *
+	 * Obtain current user name from {@link SecurityContextHolder}
 	 * @return username
 	 */
 	private String getUsername() {

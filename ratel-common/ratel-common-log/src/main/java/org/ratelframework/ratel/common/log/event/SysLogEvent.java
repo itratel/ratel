@@ -4,8 +4,9 @@ import org.springframework.context.ApplicationEvent;
 import org.ratelframework.ratel.admin.api.entity.SysLog;
 
 /**
+ * Custom system log event
  * @author whd.java@gmail.com
- * 系统日志事件
+ * @date 2019/11/1 15:22
  */
 public class SysLogEvent extends ApplicationEvent {
 
