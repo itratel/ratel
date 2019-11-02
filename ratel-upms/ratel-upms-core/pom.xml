@@ -12,6 +12,12 @@
     <artifactId>ratel-upms-core</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-common-security</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!-- 服务发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -52,7 +58,7 @@
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-upms-api</artifactId>
-            <version>${project.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
