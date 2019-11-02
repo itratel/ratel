@@ -30,6 +30,15 @@ public class ResponseResult<T> implements Serializable {
 
     /***
      * 错误信息方法
+     * @param msg 消息
+     * @return Response
+     */
+    public static <T> ResponseResult<T> error(String msg) {
+        return ResponseResult.from(500, msg, null);
+    }
+
+    /***
+     * 错误信息方法
      * @param code 错误码
      * @param msg 消息
      * @return Response

@@ -1,9 +1,9 @@
 package org.ratelframework.ratel.upms.api.feign;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
 import org.ratelframework.ratel.common.core.constant.SecurityConstants;
 import org.ratelframework.ratel.common.core.constant.ServiceNameConstants;
+import org.ratelframework.ratel.common.core.utils.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public interface RemoteTokenService {
 	 * @return page
 	 */
 	@PostMapping("/token/page")
-	R getTokenPage(@RequestBody Map<String, Object> params, @RequestHeader(SecurityConstants.FROM) String from);
+	ResponseResult getTokenPage(@RequestBody Map<String, Object> params, @RequestHeader(SecurityConstants.FROM) String from);
 
 	/**
 	 * 删除token
@@ -33,5 +33,5 @@ public interface RemoteTokenService {
 	 * @return
 	 */
 	@DeleteMapping("/token/{token}")
-	R<Boolean> removeToken(@PathVariable("token") String token, @RequestHeader(SecurityConstants.FROM) String from);
+	ResponseResult<Boolean> removeToken(@PathVariable("token") String token, @RequestHeader(SecurityConstants.FROM) String from);
 }

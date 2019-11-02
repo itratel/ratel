@@ -20,7 +20,7 @@ public interface RemoteUserService {
 	 *
 	 * @param username 用户名
 	 * @param from     调用标志
-	 * @return R
+	 * @return ResponseResult
 	 */
 	@GetMapping("/user/info/{username}")
 	ResponseResult<UserInfo> info(@PathVariable("username") String username
