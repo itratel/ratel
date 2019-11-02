@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-01
  */
 @RestController
-@RequestMapping("/upms/sys-dict")
+@RequestMapping("/upms/dict")
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class SysDictController {
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor(onConstructor__={@Autowired})
-@RequestMapping("/upms/sys-role-dept")
+@RequestMapping("/upms/roledept")
 public class SysRoleDeptController {
 
 }

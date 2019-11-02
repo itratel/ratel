@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-01
  */
 @RestController
-@RequestMapping("/upms/sys-user-role")
+@RequestMapping("/upms/userrole")
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class SysUserRoleController {
 
