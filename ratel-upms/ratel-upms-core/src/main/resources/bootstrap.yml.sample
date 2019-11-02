@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ratel-upms
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 0
+  servlet:
+    context-path: /upms
+
+
