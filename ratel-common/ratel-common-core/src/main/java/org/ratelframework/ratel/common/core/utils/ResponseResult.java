@@ -34,7 +34,7 @@ public class ResponseResult<T> implements Serializable {
      * @return Response
      */
     public static <T> ResponseResult<T> error(String msg) {
-        return from(500, msg, null);
+        return from (500, msg, null);
     }
 
     /***
@@ -44,7 +44,7 @@ public class ResponseResult<T> implements Serializable {
      * @return Response
      */
     public static <T> ResponseResult<T> error(int code, String msg) {
-        return from(code, msg, null);
+        return from (code, msg, null);
     }
 
 
@@ -53,7 +53,7 @@ public class ResponseResult<T> implements Serializable {
      * @return Response
      */
     public static <T> ResponseResult<T> ok() {
-        return from(200, "请求成功", null);
+        return from (200, "请求成功", null);
     }
 
     /***
@@ -62,7 +62,7 @@ public class ResponseResult<T> implements Serializable {
      * @return Response
      */
     public static <T> ResponseResult<T> ok(T result) {
-        return from(200, "请求成功", result);
+        return from (200, "请求成功", result);
     }
 
     /***
@@ -72,7 +72,7 @@ public class ResponseResult<T> implements Serializable {
      * @return Response
      */
     public static <T> ResponseResult<T> ok(String msg, T result) {
-        return from(200, msg, result);
+        return from (200, msg, result);
     }
 
     /***

@@ -1,8 +1,7 @@
 package org.ratelframework.ratel.upms;
 
+import org.ratelframework.ratel.common.core.annotation.RatelCloudApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * <p>
@@ -13,8 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @version 0.0.1
  * @since 0.0.1
  */
-@EnableDiscoveryClient
-@SpringBootApplication
+@RatelCloudApplication
 public class RatelUpmsApplication {
 
     public static void main(String[] args) {

@@ -12,6 +12,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>

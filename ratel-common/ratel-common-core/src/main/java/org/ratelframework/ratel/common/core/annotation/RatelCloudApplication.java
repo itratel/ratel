@@ -18,5 +18,5 @@ import java.lang.annotation.*;
 @Inherited
 @EnableDiscoveryClient
 @SpringBootApplication
-public @interface EnableRatelCloudClient {
+public @interface RatelCloudApplication {
 }

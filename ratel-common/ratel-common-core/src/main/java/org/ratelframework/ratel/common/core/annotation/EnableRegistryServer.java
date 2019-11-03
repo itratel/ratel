@@ -1,8 +1,5 @@
 package org.ratelframework.ratel.common.core.annotation;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
 import java.lang.annotation.*;
 
 /**
@@ -16,7 +13,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@EnableDiscoveryClient
-@SpringBootApplication
+@RatelCloudApplication
 public @interface EnableRegistryServer {
 }
