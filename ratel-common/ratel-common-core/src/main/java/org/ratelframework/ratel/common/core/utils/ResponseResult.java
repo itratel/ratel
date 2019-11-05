@@ -13,10 +13,9 @@ import java.io.Serializable;
  * @apiNote Response Body
  * @since 0.0.1
  */
+@Data
 @Builder
 @ToString
-@Getter
-@Setter
 @Accessors(chain = true)
 @AllArgsConstructor
 public class ResponseResult<T> implements Serializable {
