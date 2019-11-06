@@ -1,4 +1,4 @@
-package org.ratelframework.ratel.common.log.util;
+package org.ratelframework.ratel.common.log.utils;
 
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
@@ -22,7 +22,7 @@ import java.util.Objects;
  * @date 2019/11/1 15:28
  */
 @UtilityClass
-public class SysLogUtils {
+public class SysLogUtil {
 
 	/***
 	 * Obtain system log info from client request

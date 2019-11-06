@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.ratelframework.ratel.upms.api.entity.SysLog;
 import org.ratelframework.ratel.common.core.utils.SpringContextHolder;
 import org.ratelframework.ratel.common.log.event.SysLogEvent;
-import org.ratelframework.ratel.common.log.util.SysLogUtils;
+import org.ratelframework.ratel.common.log.utils.SysLogUtil;
 import org.springframework.util.StopWatch;
 
 /**
@@ -34,7 +34,7 @@ public class SysLogAspect {
         String strMethodName = point.getSignature().getName();
         log.debug("[类名]:{},[方法]:{}", strClassName, strMethodName);
 
-        SysLog logVo = SysLogUtils.getSysLog();
+        SysLog logVo = SysLogUtil.getSysLog();
         logVo.setTitle(sysLog.value());
         // 发送异步日志事件
         StopWatch stopWatch = new StopWatch();
