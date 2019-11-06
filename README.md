@@ -35,7 +35,7 @@
 ```lua
 ratel
 ├── ratel-authorization -- 授权服务提供
-     ├── ratel-authorization-oauth2-authserver oauth2认证中心
+     ├── ratel-authorization-oauth2-authserver oauth2认证授权中心
      └── ratel-authorization-oauth2-resource-server oauth2资源中心
 └── ratel-common -- 系统公共模块 
      ├── ratel-common-core -- 公共工具类核心包
