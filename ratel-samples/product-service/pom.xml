@@ -8,7 +8,7 @@
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>product-org.ratelframework.ratel.codegen.service</artifactId>
+    <artifactId>product-service</artifactId>
 
     <dependencies>
         <dependency>
