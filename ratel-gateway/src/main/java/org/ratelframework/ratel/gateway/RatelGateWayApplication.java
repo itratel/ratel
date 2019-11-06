@@ -1,8 +1,7 @@
 package org.ratelframework.ratel.gateway;
 
+import org.ratelframework.ratel.common.core.annotation.RatelCloudApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author whd.java@gmail.com
@@ -11,8 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @version 0.0.1
  * @since 0.0.1
  */
-@SpringBootApplication
-@EnableDiscoveryClient
+@RatelCloudApplication
 public class RatelGateWayApplication {
 
     public static void main(String[] args) {

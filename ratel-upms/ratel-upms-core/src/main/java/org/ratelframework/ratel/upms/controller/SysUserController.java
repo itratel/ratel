@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequiredArgsConstructor(onConstructor__={@Autowired})
-@RequestMapping("/upms/user")
+@RequestMapping("/user")
 public class SysUserController {
 
 

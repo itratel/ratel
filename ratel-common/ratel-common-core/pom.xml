@@ -13,15 +13,21 @@
     <artifactId>ratel-common-core</artifactId>
 
     <dependencies>
-
+        <!--
+        在添加依赖项时，我们可以使用<optional>true</optional>标志，或将scope设置为<scope>provided</scope>。
+        在这两种情况下，依赖关系都将在声明它们的模块的classpath中，
+        但是使用将它们定义为依赖关系的模块不会在其他项目中传递它们，即不会形成传递依赖。
+        -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- hutool -->
@@ -45,6 +51,7 @@
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>

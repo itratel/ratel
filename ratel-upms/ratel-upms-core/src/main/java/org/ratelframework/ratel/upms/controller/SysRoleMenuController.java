@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequiredArgsConstructor(onConstructor__={@Autowired})
-@RequestMapping("/upms/rolemenu")
+@RequestMapping("/rolemenu")
 public class SysRoleMenuController {
 
 }

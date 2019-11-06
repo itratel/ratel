@@ -13,18 +13,24 @@
 
     <dependencies>
 
+        <!--公共核心库-->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
         <!-- 服务发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!-- 网管组件 网关组件内部依赖了webflux-->
+        <!-- 网关组件 网关组件内部依赖了webflux-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
     </dependencies>
 
 

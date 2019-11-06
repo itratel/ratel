@@ -22,7 +22,7 @@ import javax.validation.Valid;
  * @since 2019-11-01
  */
 @RestController
-@RequestMapping("/upms/log")
+@RequestMapping("/log")
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class SysLogController {
 

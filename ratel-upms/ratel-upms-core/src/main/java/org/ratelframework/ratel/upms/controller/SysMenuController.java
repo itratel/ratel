@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequiredArgsConstructor(onConstructor__={@Autowired})
-@RequestMapping("/upms/menu")
+@RequestMapping("/menu")
 public class SysMenuController {
 
     private final ISysMenuService sysMenuService;

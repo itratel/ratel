@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
  * @since 2019-11-01
  */
 @RestController
-@RequestMapping("/upms/dept")
+@RequestMapping("/dept")
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class SysDeptController {
 
@@ -35,7 +35,7 @@ public class SysDeptController {
      * @return SysDept
      */
     @GetMapping("/{id}")
-    public ResponseResult getById(@PathVariable Integer id) {
+    public ResponseResult<SysDept> getById(@PathVariable Integer id) {
         return ResponseResult.ok(sysDeptService.getById(id));
     }
 
