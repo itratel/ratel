@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: order-org.ratelframework.ratel.codegen.service
+    name: order-service
   cloud:
     nacos:
       discovery:

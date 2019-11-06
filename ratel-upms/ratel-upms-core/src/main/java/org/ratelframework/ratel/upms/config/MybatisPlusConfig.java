@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 0.0.1
  */
 @Configuration
-@MapperScan("org.ratelframework.ratel.upms.org.ratelframework.ratel.codegen.mapper")
+@MapperScan("org.ratelframework.ratel.upms.mapper")
 public class MybatisPlusConfig {
 
 

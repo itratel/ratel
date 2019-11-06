@@ -16,7 +16,7 @@ import static org.ratelframework.ratel.order.feign.ProductFeignService.PRODUCT_S
 @FeignClient(value = PRODUCT_SERVICE_NAME, path = "/product")
 public interface ProductFeignService {
 
-    String PRODUCT_SERVICE_NAME = "product-org.ratelframework.ratel.codegen.service";
+    String PRODUCT_SERVICE_NAME = "product-service";
 
     @GetMapping("/hello")
     String hello(@RequestParam("name") String name);

@@ -5,15 +5,32 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df #该namespace对应的名称为：itratel
+        enabled: true
+        register-enabled: true
+      config:
+        file-extension: yml
+        server-addr: localhost:8848
         namespace: c0797ecb-301e-4137-84b7-7f14964712df
+        enabled: true
+        group: ratel-upms
   profiles:
     active: dev
   main:
     allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/ratel?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    type: com.zaxxer.hikari.HikariDataSource
+    username: root
+    password: cdslyk912
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
   port: 0
   servlet:
     context-path: /upms
 
-
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  global-config:
+    banner: false

@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: resource-org.ratelframework.ratel.codegen.service
+    name: resource-service
   cloud:
     nacos:
       discovery:

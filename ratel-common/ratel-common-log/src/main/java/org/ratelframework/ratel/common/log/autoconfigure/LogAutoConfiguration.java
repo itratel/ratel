@@ -23,7 +23,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @Configuration
 @ConditionalOnWebApplication
 @AllArgsConstructor(onConstructor__={@Autowired})
-@EnableFeignClients({"org.ratelframework.ratel.*"})
+@EnableFeignClients({"org.ratelframework.ratel.upms.api.feign"})
 public class LogAutoConfiguration {
 
 	private final RemoteLogService remoteLogService;

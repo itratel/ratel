@@ -1,2 +1,2 @@
 #org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-#  org.ratelframework.ratel.common.security.org.ratelframework.ratel.codegen.service.PigUserDetailsServiceImpl
+#  org.ratelframework.ratel.common.security.service.PigUserDetailsServiceImpl

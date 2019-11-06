@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE org.ratelframework.ratel.codegen.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-org.ratelframework.ratel.codegen.mapper.dtd">
-<org.ratelframework.ratel.codegen.mapper namespace="org.ratelframework.ratel.upms.org.ratelframework.ratel.codegen.mapper.SysRoleMenuMapper">
-
-</org.ratelframework.ratel.codegen.mapper>

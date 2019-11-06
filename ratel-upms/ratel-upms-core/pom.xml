@@ -13,17 +13,27 @@
 
     <dependencies>
 
+        <!-- 用户权限管理接口依赖-->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-upms-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!-- 日志组件依赖-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-log</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
+        <!-- 安全相关-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-security</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
         <!-- 服务发现 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -32,7 +42,7 @@
         <!-- 配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-org.ratelframework.ratel.codegen.config</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
         <!--web 模块-->
@@ -67,26 +77,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.ratelframework</groupId>
-            <artifactId>ratel-upms-api</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-<!--            <version>2.3.29</version>-->
         </dependency>
 
     </dependencies>
