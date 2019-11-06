@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ratel-codegen
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.78.190.213:8848
+logging:
+  level:
+    root: info

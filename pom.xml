@@ -36,6 +36,8 @@
         <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <hutool.version>4.5.10</hutool.version>
+        <guava.version>28.0-jre</guava.version>
+        <velocity.version>1.7</velocity.version>
     </properties>
 
     <modules>
@@ -90,6 +92,16 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>velocity</artifactId>
+                <groupId>org.apache.velocity</groupId>
+                <version>${velocity.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

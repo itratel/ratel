@@ -80,7 +80,7 @@ public class MyBatisAutoConfiguration {
 		factory.setDataSource(dataSource);
 		factory.setVfs(SpringBootVFS.class);
 
-		// handle the config location
+		// handle the org.ratelframework.ratel.codegen.config location
 		if (StringUtils.hasText(properties.getConfigLocation())) {
 			factory.setConfigLocation(resourceLoader.getResource(properties.getConfigLocation()));
 		}
@@ -101,9 +101,9 @@ public class MyBatisAutoConfiguration {
 		}
 
 
-		// by default, make mapper locations at 'classpath:mapper/**/*.xml'
+		// by default, make org.ratelframework.ratel.codegen.mapper locations at 'classpath:org.ratelframework.ratel.codegen.mapper/**/*.xml'
 		if (ObjectUtils.isEmpty(properties.getMapperLocations())) {
-			properties.setMapperLocations(new String[]{ "classpath:mapper/**/*.xml" });
+			properties.setMapperLocations(new String[]{ "classpath:org.ratelframework.ratel.codegen.mapper/**/*.xml" });
 		}
 		if (!ObjectUtils.isEmpty(properties.resolveMapperLocations())) {
 			factory.setMapperLocations(properties.resolveMapperLocations());

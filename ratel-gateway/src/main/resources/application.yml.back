@@ -12,14 +12,14 @@ spring:
     gateway:
       enabled: true
       routes:
-        - id: order-service
-          uri: lb://order-service
+        - id: order-org.ratelframework.ratel.codegen.service
+          uri: lb://order-org.ratelframework.ratel.codegen.service
           predicates:
             - Path=/order/**
           filters:
             - StripPrefix=1
-        - id: product-service
-          uri: lb://product-service
+        - id: product-org.ratelframework.ratel.codegen.service
+          uri: lb://product-org.ratelframework.ratel.codegen.service
           predicates:
             - Path=/product/**
           filters:

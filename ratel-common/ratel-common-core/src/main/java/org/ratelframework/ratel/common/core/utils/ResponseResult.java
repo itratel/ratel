@@ -17,6 +17,7 @@ import java.io.Serializable;
 @Builder
 @ToString
 @Accessors(chain = true)
+@NoArgsConstructor
 @AllArgsConstructor
 public class ResponseResult<T> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -34,6 +35,15 @@ public class ResponseResult<T> implements Serializable {
      */
     public static <T> ResponseResult<T> error(String msg) {
         return from (500, msg, null);
+    }
+
+    /***
+     * 错误信息方法
+     * @param exception 异常
+     * @return Response
+     */
+    public static <T> ResponseResult<T> error(Exception exception) {
+        return from (500, exception.getMessage(), null);
     }
 
     /***

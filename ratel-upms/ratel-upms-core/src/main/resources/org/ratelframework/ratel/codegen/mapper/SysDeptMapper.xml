@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE org.ratelframework.ratel.codegen.mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-org.ratelframework.ratel.codegen.mapper.dtd">
+<org.ratelframework.ratel.codegen.mapper namespace="org.ratelframework.ratel.upms.org.ratelframework.ratel.codegen.mapper.SysDeptMapper">
+
+    <!--关联查询部门列表-->
+    <select id="listDepts" resultType="org.ratelframework.ratel.upms.api.org.ratelframework.ratel.codegen.entity.SysDept">
+		SELECT
+			t.*
+		FROM
+			sys_dept t
+		LEFT JOIN sys_dept_relation dr ON t.dept_id = dr.descendant
+		WHERE dr.ancestor = 0
+	</select>
+</org.ratelframework.ratel.codegen.mapper>

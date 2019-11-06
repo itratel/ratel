@@ -51,9 +51,9 @@ public class DataSourceAutoConfiguration {
         @Bean
         @Primary
         @PrimaryDataSource
-        @ConditionalOnProperty(name = "ratel.datasource.primary.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
+        @ConditionalOnProperty(name = "ratel.datasource.primary.org.ratelframework.ratel.codegen.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
         @ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
-        @ConfigurationProperties(prefix = "ratel.datasource.primary.config")
+        @ConfigurationProperties(prefix = "ratel.datasource.primary.org.ratelframework.ratel.codegen.config")
         public DruidDataSource primaryDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
@@ -70,8 +70,8 @@ public class DataSourceAutoConfiguration {
         @Bean
         @SubDataSource
         @ConditionalOnClass(DruidDataSource.class)
-        @ConditionalOnProperty(name = "ratel.datasource.sub.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
-        @ConfigurationProperties(prefix = "ratel.datasource.sub.config")
+        @ConditionalOnProperty(name = "ratel.datasource.sub.org.ratelframework.ratel.codegen.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
+        @ConfigurationProperties(prefix = "ratel.datasource.sub.org.ratelframework.ratel.codegen.config")
         public DruidDataSource subDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
@@ -89,8 +89,8 @@ public class DataSourceAutoConfiguration {
         @Bean
         @CandidateDataSource
         @ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
-        @ConditionalOnProperty(name = "ratel.datasource.candidate.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
-        @ConfigurationProperties(prefix = "ratel.datasource.candidate.config")
+        @ConditionalOnProperty(name = "ratel.datasource.candidate.org.ratelframework.ratel.codegen.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
+        @ConfigurationProperties(prefix = "ratel.datasource.candidate.org.ratelframework.ratel.codegen.config")
         public DruidDataSource candidateDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
