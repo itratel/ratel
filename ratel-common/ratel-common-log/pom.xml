@@ -13,6 +13,18 @@
 
 
     <dependencies>
+        <!--  用户权限模块的api  -->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-upms-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -32,12 +44,6 @@
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
         </dependency>
 
-        <!--  用户权限模块的api  -->
-        <dependency>
-            <groupId>org.ratelframework</groupId>
-            <artifactId>ratel-upms-api</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

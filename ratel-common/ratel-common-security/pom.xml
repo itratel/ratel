@@ -13,21 +13,32 @@
 
 
     <dependencies>
+        <!-- ratel公共核心模块-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+        <!-- upms api接口-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-upms-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+        <!-- 元素据生成-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
         <!--安全模块-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
