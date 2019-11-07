@@ -48,9 +48,10 @@
             <artifactId>guava</artifactId>
         </dependency>
 
+        <!--druid连接池-->
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <optional>true</optional>
         </dependency>
 

@@ -20,14 +20,19 @@ spring:
     allow-bean-definition-overriding: true
   datasource:
     url: jdbc:mysql://localhost:3306/ratel?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-    type: com.zaxxer.hikari.HikariDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: cdslyk912
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      max-lifetime: 30000
-      maximum-pool-size: 20
-      minimum-idle: 5
+    druid:
+      min-idle: 5
+      max-active: 10
+      initial-size: 2
+      validation-query: SELECT 1
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      max-pool-prepared-statement-per-connection-size: 20
 server:
   port: 0
   servlet:
