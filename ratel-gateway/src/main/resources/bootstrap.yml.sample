@@ -8,7 +8,7 @@ spring:
       discovery:
         enabled: true
         namespace: c0797ecb-301e-4137-84b7-7f14964712df
-        server-addr: localhost:8848
+        server-addr: 120.78.190.213:8848
         register-enabled: true
     gateway:
       enabled: true
@@ -18,16 +18,16 @@ spring:
           predicates:
             - Path=/order/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=0
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/product/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=0
         - id: ratel-upms
           uri: lb://ratel-upms
           predicates:
             - Path=/upms/**
           filter:
-            - StripPrefix=1
+            - StripPrefix=0

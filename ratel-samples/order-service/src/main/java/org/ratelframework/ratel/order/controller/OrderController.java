@@ -1,7 +1,10 @@
 package org.ratelframework.ratel.order.controller;
 
+import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.order.feign.ProductFeignService;
+import org.ratelframework.ratel.order.pojo.po.User;
+import org.ratelframework.ratel.order.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.List;
 
 /**
  * @author whd.java@gmail.com
@@ -27,6 +31,8 @@ public class OrderController {
 
     private final ProductFeignService productFeignService;
 
+    private final IUserService userService;
+
     @GetMapping("/testHello")
     public String testHello(@RequestParam("name") String name) {
         ServiceInstance serviceInstance = loadBalancerClient.choose("product-service");
@@ -42,5 +48,13 @@ public class OrderController {
     @GetMapping("/hi")
     public String hello(@RequestParam("name") String name) {
         return "hello" + name;
+    }
+
+
+    @GetMapping("/user")
+    public List<User> hello() {
+        User one = userService.getOne();
+        User selectOne = userService.selectOne();
+        return Lists.newArrayList(one, selectOne);
     }
 }
