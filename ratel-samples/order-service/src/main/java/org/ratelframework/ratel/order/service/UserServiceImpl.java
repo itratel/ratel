@@ -2,10 +2,13 @@ package org.ratelframework.ratel.order.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.ratelframework.ratel.common.annotation.PrimaryJdbcTemplate;
 import org.ratelframework.ratel.common.annotation.PrimarySqlSessionTemplate;
+import org.ratelframework.ratel.common.annotation.SubJdbcTemplate;
 import org.ratelframework.ratel.common.annotation.SubSqlSessionTemplate;
 import org.ratelframework.ratel.order.pojo.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,6 +27,14 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     @SubSqlSessionTemplate
     private SqlSessionTemplate subSqlSessionTemplate;
+
+    @Autowired
+    @PrimaryJdbcTemplate
+    private JdbcTemplate primaryJdbcTemplate;
+
+    @Autowired
+    @SubJdbcTemplate
+    private JdbcTemplate subJdbcTemplate;
 
     @Override
     public User getOne() {
