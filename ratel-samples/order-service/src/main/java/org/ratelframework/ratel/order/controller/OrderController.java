@@ -52,9 +52,18 @@ public class OrderController {
 
 
     @GetMapping("/user")
-    public List<User> hello() {
+    public List<User> user() {
         User one = userService.getOne();
         User selectOne = userService.selectOne();
         return Lists.newArrayList(one, selectOne);
     }
+
+    @GetMapping("/newUser")
+    public List<User> newUser() {
+        User one = userService.findOne();
+        User selectOne = userService.queryOne();
+        return Lists.newArrayList(one, selectOne);
+    }
+
+
 }

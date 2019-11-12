@@ -12,4 +12,8 @@ public interface IUserService {
     User getOne();
 
     User selectOne();
+
+    User findOne();
+
+    User queryOne();
 }
