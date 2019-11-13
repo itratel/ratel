@@ -12,6 +12,15 @@
 
     <!--注册中心-->
     <dependencies>
+
+        <!--核心工具包-->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <!--服务发现-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
