@@ -5,7 +5,7 @@ spring:
     nacos:
       discovery:
         enabled: true
-        namespace: ********-****-****-****-************
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df
         server-addr: localhost:8848
 server:
   port: 0
