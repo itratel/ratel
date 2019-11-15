@@ -10,9 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ratel-monitor</artifactId>
     <packaging>jar</packaging>
-
-    <name>Maven Portlet Archetype</name>
-
+    <name>ratel-monitor</name>
 
     <dependencies>
         <dependency>
@@ -32,7 +30,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <!--undertow容器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,10 +41,23 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--admin server监控服务器-->
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
         </dependency>
     </dependencies>
 

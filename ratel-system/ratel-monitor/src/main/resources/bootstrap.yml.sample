@@ -10,3 +10,11 @@ spring:
         namespace: c0797ecb-301e-4137-84b7-7f14964712df
         enabled: true
         register-enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
