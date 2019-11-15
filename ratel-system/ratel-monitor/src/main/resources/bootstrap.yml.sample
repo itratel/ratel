@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: RATEL-MONITOR
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df
+        enabled: true
+        register-enabled: true
