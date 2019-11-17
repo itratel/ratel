@@ -22,3 +22,7 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+info:
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+  version: @project.version@
