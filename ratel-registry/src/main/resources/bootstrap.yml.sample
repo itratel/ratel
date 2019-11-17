@@ -7,5 +7,6 @@ spring:
         enabled: true
         namespace: c0797ecb-301e-4137-84b7-7f14964712df
         server-addr: localhost:8848
+        register-enabled: true
 server:
   port: 0
