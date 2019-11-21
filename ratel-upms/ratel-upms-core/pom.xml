@@ -11,6 +11,11 @@
 
     <artifactId>ratel-upms-core</artifactId>
 
+    <description>
+        目的是做一套基于用户[用户组]->角色[角色组]->权限->资源为体系最完整的管理系统用户权限管理系统
+        User Permission Management System
+    </description>
+
     <dependencies>
 
         <!-- 用户权限管理接口依赖-->
