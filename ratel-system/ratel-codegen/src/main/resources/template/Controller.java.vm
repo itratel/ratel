@@ -2,7 +2,7 @@ package ${package}.${moduleName}.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.common.log.annotation.SysLog;
 import ${package}.${moduleName}.entity.${className};
 import ${package}.${moduleName}.service.${className}Service;
@@ -31,55 +31,55 @@ public class ${className}Controller {
    * @return
    */
   @GetMapping("/page")
-  public ResponseResult<IPage<${className}>> get${className}Page(Page<${className}> page, ${className} ${classname}) {
-    return  new ResponseResult<>(${classname}Service.get${className}Page(page,${classname}));
+  public Response<IPage<${className}>> get${className}Page(Page<${className}> page, ${className} ${classname}) {
+    return  new Response<>(${classname}Service.get${className}Page(page,${classname}));
   }
 
 
   /**
    * 通过id查询单条记录
    * @param ${pk.lowerAttrName}
-   * @return ResponseResult
+   * @return Response
    */
   @GetMapping("/{${pk.lowerAttrName}}")
-  public ResponseResult<${className}> getById(@PathVariable("${pk.lowerAttrName}") ${pk.attrType} ${pk.lowerAttrName}){
-    return new ResponseResult<>(${classname}Service.getById(${pk.lowerAttrName}));
+  public Response<${className}> getById(@PathVariable("${pk.lowerAttrName}") ${pk.attrType} ${pk.lowerAttrName}){
+    return new Response<>(${classname}Service.getById(${pk.lowerAttrName}));
   }
 
   /**
    * 新增记录
    * @param ${classname}
-   * @return ResponseResult
+   * @return Response
    */
   @SysLog("新增${comments}")
   @PostMapping
   @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_add')")
-  public ResponseResult save(@RequestBody ${className} ${classname}){
-    return new ResponseResult<>(${classname}Service.save(${classname}));
+  public Response save(@RequestBody ${className} ${classname}){
+    return new Response<>(${classname}Service.save(${classname}));
   }
 
   /**
    * 修改记录
    * @param ${classname}
-   * @return ResponseResult
+   * @return Response
    */
   @SysLog("修改${comments}")
   @PutMapping
   @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_edit')")
-  public ResponseResult update(@RequestBody ${className} ${classname}){
-    return new ResponseResult<>(${classname}Service.updateById(${classname}));
+  public Response update(@RequestBody ${className} ${classname}){
+    return new Response<>(${classname}Service.updateById(${classname}));
   }
 
   /**
    * 通过id删除一条记录
    * @param ${pk.lowerAttrName}
-   * @return ResponseResult
+   * @return Response
    */
   @SysLog("删除${comments}")
   @DeleteMapping("/{${pk.lowerAttrName}}")
   @PreAuthorize("@pms.hasPermission('${moduleName}_${pathName}_del')")
-  public ResponseResult removeById(@PathVariable ${pk.attrType} ${pk.lowerAttrName}){
-    return new ResponseResult<>(${classname}Service.removeById(${pk.lowerAttrName}));
+  public Response removeById(@PathVariable ${pk.attrType} ${pk.lowerAttrName}){
+    return new Response<>(${classname}Service.removeById(${pk.lowerAttrName}));
   }
 
 }

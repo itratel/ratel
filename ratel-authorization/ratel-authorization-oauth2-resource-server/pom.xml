@@ -12,10 +12,17 @@
     <artifactId>ratel-authorization-oauth2-resource-server</artifactId>
 
     <dependencies>
+        <!--公共核心库-->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
     </dependencies>
 
 

@@ -3,7 +3,7 @@ package org.ratelframework.ratel.upms.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.AllArgsConstructor;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.upms.api.entity.SysMenu;
 import org.ratelframework.ratel.upms.api.entity.SysRoleMenu;
 import org.ratelframework.ratel.upms.api.vo.MenuVO;
@@ -43,12 +43,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     @CacheEvict(value = "menu_details", allEntries = true)
-    public ResponseResult removeMenuById(Integer id) {
+    public Response removeMenuById(Integer id) {
         // 查询父节点为当前节点的节点
         List<SysMenu> menuList = this.list(Wrappers.<SysMenu>query()
                 .lambda().eq(SysMenu::getParentId, id));
         if (CollUtil.isNotEmpty(menuList)) {
-            return ResponseResult.error("菜单含有下级不能删除");
+            return Response.error("菜单含有下级不能删除");
         }
 
         sysRoleMenuMapper
@@ -56,7 +56,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
                         .lambda().eq(SysRoleMenu::getMenuId, id));
 
         //删除当前菜单及其子菜单
-        return ResponseResult.ok(this.removeById(id));
+        return Response.ok(this.removeById(id));
     }
 
     @Override

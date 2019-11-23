@@ -3,7 +3,7 @@ package org.ratelframework.ratel.upms.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.security.utils.SecurityUtils;
 import org.ratelframework.ratel.upms.api.entity.SysUser;
 import org.ratelframework.ratel.upms.service.ISysUserService;
@@ -32,14 +32,14 @@ public class SysUserController {
      * @return 用户信息
      */
     @GetMapping(value = {"/info"})
-    public ResponseResult info() {
+    public Response info() {
         String username = SecurityUtils.getUser().getUsername();
         SysUser user = userService.getOne(Wrappers.<SysUser>query()
                 .lambda().eq(SysUser::getUsername, username));
         if (user == null) {
-            return ResponseResult.error("获取当前用户信息失败");
+            return Response.error("获取当前用户信息失败");
         }
         return null;
-//        return ResponseResult.ok(userService.getUserInfo(user));
+//        return Response.ok(userService.getUserInfo(user));
     }
 }

@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseResult<T> implements Serializable {
+public class Response<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int code;
@@ -33,7 +33,7 @@ public class ResponseResult<T> implements Serializable {
      * @param msg 消息
      * @return Response
      */
-    public static <T> ResponseResult<T> error(String msg) {
+    public static <T> Response<T> error(String msg) {
         return from (500, msg, null);
     }
 
@@ -42,7 +42,7 @@ public class ResponseResult<T> implements Serializable {
      * @param exception 异常
      * @return Response
      */
-    public static <T> ResponseResult<T> error(Exception exception) {
+    public static <T> Response<T> error(Exception exception) {
         return from (500, exception.getMessage(), null);
     }
 
@@ -52,7 +52,7 @@ public class ResponseResult<T> implements Serializable {
      * @param msg 消息
      * @return Response
      */
-    public static <T> ResponseResult<T> error(int code, String msg) {
+    public static <T> Response<T> error(int code, String msg) {
         return from (code, msg, null);
     }
 
@@ -61,7 +61,7 @@ public class ResponseResult<T> implements Serializable {
      * 操作成功信息方法
      * @return Response
      */
-    public static <T> ResponseResult<T> ok() {
+    public static <T> Response<T> ok() {
         return from (200, "请求成功", null);
     }
 
@@ -70,7 +70,7 @@ public class ResponseResult<T> implements Serializable {
      * @param result result to return
      * @return Response
      */
-    public static <T> ResponseResult<T> ok(T result) {
+    public static <T> Response<T> ok(T result) {
         return from (200, "请求成功", result);
     }
 
@@ -80,7 +80,7 @@ public class ResponseResult<T> implements Serializable {
      * @param result result
      * @return Response
      */
-    public static <T> ResponseResult<T> ok(String msg, T result) {
+    public static <T> Response<T> ok(String msg, T result) {
         return from (200, msg, result);
     }
 
@@ -90,8 +90,8 @@ public class ResponseResult<T> implements Serializable {
      * @param result result
      * @return Response
      */
-    public static <T> ResponseResult<T> from(int code, String msg, T result) {
-        return new ResponseResult<>(code, msg, result);
+    public static <T> Response<T> from(int code, String msg, T result) {
+        return new Response<>(code, msg, result);
     }
 
 }

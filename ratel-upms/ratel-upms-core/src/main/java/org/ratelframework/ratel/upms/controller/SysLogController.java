@@ -4,7 +4,7 @@ package org.ratelframework.ratel.upms.controller;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.upms.api.entity.SysLog;
 import org.ratelframework.ratel.upms.service.ISysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,8 @@ public class SysLogController {
      * @return
      */
     @GetMapping("/page")
-    public ResponseResult getLogPage(Page page, SysLog sysLog) {
-        return ResponseResult.ok(sysLogService.page(page, Wrappers.query(sysLog)));
+    public Response getLogPage(Page page, SysLog sysLog) {
+        return Response.ok(sysLogService.page(page, Wrappers.query(sysLog)));
     }
 
     /**
@@ -48,8 +48,8 @@ public class SysLogController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_log_del')")
-    public ResponseResult removeById(@PathVariable Long id) {
-        return ResponseResult.ok(sysLogService.removeById(id));
+    public Response removeById(@PathVariable Long id) {
+        return Response.ok(sysLogService.removeById(id));
     }
 
     /**
@@ -60,8 +60,8 @@ public class SysLogController {
      */
 //    @Inner
     @PostMapping
-    public ResponseResult save(@Valid @RequestBody SysLog sysLog) {
-        return ResponseResult.ok(sysLogService.save(sysLog));
+    public Response save(@Valid @RequestBody SysLog sysLog) {
+        return Response.ok(sysLogService.save(sysLog));
     }
 
 }

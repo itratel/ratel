@@ -1,6 +1,6 @@
 package org.ratelframework.ratel.upms.service;
 
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.upms.api.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.ratelframework.ratel.upms.api.vo.MenuVO;
@@ -31,7 +31,7 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @param id 菜单ID
      * @return 成功、失败
      */
-    ResponseResult removeMenuById(Integer id);
+    Response removeMenuById(Integer id);
 
     /**
      * 更新菜单信息

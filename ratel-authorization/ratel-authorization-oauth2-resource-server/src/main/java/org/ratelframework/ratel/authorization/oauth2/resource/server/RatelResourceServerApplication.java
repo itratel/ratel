@@ -1,8 +1,7 @@
 package org.ratelframework.ratel.authorization.oauth2.resource.server;
 
+import org.ratelframework.ratel.common.core.annotation.RatelCloudApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author whd.java@gmail.com
@@ -11,8 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @apiNote Describe the function of this class in one sentence
  * @since 0.0.1
  */
-@EnableDiscoveryClient
-@SpringBootApplication
+@RatelCloudApplication
 public class RatelResourceServerApplication {
 
     public static void main(String[] args) {

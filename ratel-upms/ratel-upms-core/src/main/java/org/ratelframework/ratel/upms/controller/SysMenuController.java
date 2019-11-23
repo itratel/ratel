@@ -4,7 +4,7 @@ package org.ratelframework.ratel.upms.controller;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.common.core.constant.CommonConstants;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.common.log.annotation.SysLog;
 import org.ratelframework.ratel.security.utils.SecurityUtils;
 import org.ratelframework.ratel.upms.api.dto.MenuTree;
@@ -44,7 +44,7 @@ public class SysMenuController {
      * @return 当前用户的树形菜单
      */
     @GetMapping
-    public ResponseResult getUserMenu() {
+    public Response getUserMenu() {
         // 获取符合条件的菜单
         Set<MenuVO> all = new HashSet<>();
         SecurityUtils.getRoles()
@@ -54,7 +54,7 @@ public class SysMenuController {
                 .map(MenuTree::new)
                 .sorted(Comparator.comparingInt(MenuTree::getSort))
                 .collect(Collectors.toList());
-        return ResponseResult.ok(TreeUtil.buildByLoop(menuTreeList, -1));
+        return Response.ok(TreeUtil.buildByLoop(menuTreeList, -1));
     }
 
     /**
@@ -63,8 +63,8 @@ public class SysMenuController {
      * @return 树形菜单
      */
     @GetMapping(value = "/tree")
-    public ResponseResult getTree() {
-        return ResponseResult.ok(TreeUtil.buildTree(sysMenuService.list(Wrappers.emptyWrapper()), -1));
+    public Response getTree() {
+        return Response.ok(TreeUtil.buildTree(sysMenuService.list(Wrappers.emptyWrapper()), -1));
     }
 
     /**
@@ -88,8 +88,8 @@ public class SysMenuController {
      * @return 菜单详细信息
      */
     @GetMapping("/{id}")
-    public ResponseResult getById(@PathVariable Integer id) {
-        return ResponseResult.ok(sysMenuService.getById(id));
+    public Response getById(@PathVariable Integer id) {
+        return Response.ok(sysMenuService.getById(id));
     }
 
     /**
@@ -101,8 +101,8 @@ public class SysMenuController {
     @SysLog("新增菜单")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys_menu_add')")
-    public ResponseResult save(@Valid @RequestBody SysMenu sysMenu) {
-        return ResponseResult.ok(sysMenuService.save(sysMenu));
+    public Response save(@Valid @RequestBody SysMenu sysMenu) {
+        return Response.ok(sysMenuService.save(sysMenu));
     }
 
     /**
@@ -114,7 +114,7 @@ public class SysMenuController {
     @SysLog("删除菜单")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_menu_del')")
-    public ResponseResult removeById(@PathVariable Integer id) {
+    public Response removeById(@PathVariable Integer id) {
         return sysMenuService.removeMenuById(id);
     }
 
@@ -127,8 +127,8 @@ public class SysMenuController {
     @SysLog("更新菜单")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('sys_menu_edit')")
-    public ResponseResult update(@Valid @RequestBody SysMenu sysMenu) {
-        return ResponseResult.ok(sysMenuService.updateMenuById(sysMenu));
+    public Response update(@Valid @RequestBody SysMenu sysMenu) {
+        return Response.ok(sysMenuService.updateMenuById(sysMenu));
     }
 
 }

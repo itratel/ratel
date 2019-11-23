@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.ratelframework.ratel.codegen.entity.GenConfig;
 import org.ratelframework.ratel.codegen.service.ISysGeneratorService;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +33,8 @@ public class SysGeneratorController {
 	 * @return 数据库表
 	 */
 	@GetMapping("/page")
-	public ResponseResult<IPage> list(Page page, String tableName) {
-		return ResponseResult.ok(sysGeneratorService.queryPage(page, tableName));
+	public Response<IPage> list(Page page, String tableName) {
+		return Response.ok(sysGeneratorService.queryPage(page, tableName));
 	}
 
 	/**

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.common.log.annotation.SysLog;
 import org.ratelframework.ratel.upms.api.entity.SysDict;
 import org.ratelframework.ratel.upms.service.ISysDictService;
@@ -39,8 +39,8 @@ public class SysDictController {
      * @return 字典信息
      */
     @GetMapping("/{id}")
-    public ResponseResult getById(@PathVariable Integer id) {
-        return ResponseResult.ok(sysDictService.getById(id));
+    public Response getById(@PathVariable Integer id) {
+        return Response.ok(sysDictService.getById(id));
     }
 
     /**
@@ -50,8 +50,8 @@ public class SysDictController {
      * @return 分页对象
      */
     @GetMapping("/page")
-    public ResponseResult<IPage> getDictPage(Page page, SysDict sysDict) {
-        return ResponseResult.ok(sysDictService.page(page, Wrappers.query(sysDict)));
+    public Response<IPage> getDictPage(Page page, SysDict sysDict) {
+        return Response.ok(sysDictService.page(page, Wrappers.query(sysDict)));
     }
 
     /**
@@ -62,8 +62,8 @@ public class SysDictController {
      */
     @GetMapping("/type/{type}")
     @Cacheable(value = "dict_details", key = "#type")
-    public ResponseResult getDictByType(@PathVariable String type) {
-        return ResponseResult.ok(sysDictService.list(Wrappers
+    public Response getDictByType(@PathVariable String type) {
+        return Response.ok(sysDictService.list(Wrappers
                 .<SysDict>query().lambda()
                 .eq(SysDict::getType, type)));
     }
@@ -78,8 +78,8 @@ public class SysDictController {
     @PostMapping
     @CacheEvict(value = "dict_details", key = "#sysDict.type")
     @PreAuthorize("@pms.hasPermission('sys_dict_add')")
-    public ResponseResult save(@Valid @RequestBody SysDict sysDict) {
-        return ResponseResult.ok(sysDictService.save(sysDict));
+    public Response save(@Valid @RequestBody SysDict sysDict) {
+        return Response.ok(sysDictService.save(sysDict));
     }
 
     /**
@@ -87,14 +87,14 @@ public class SysDictController {
      *
      * @param id   ID
      * @param type 类型
-     * @return ResponseResult
+     * @return Response
      */
     @SysLog("删除字典")
     @DeleteMapping("/{id}/{type}")
     @CacheEvict(value = "dict_details", key = "#type")
     @PreAuthorize("@pms.hasPermission('sys_dict_del')")
-    public ResponseResult removeById(@PathVariable Integer id, @PathVariable String type) {
-        return ResponseResult.ok(sysDictService.removeById(id));
+    public Response removeById(@PathVariable Integer id, @PathVariable String type) {
+        return Response.ok(sysDictService.removeById(id));
     }
 
     /**
@@ -107,8 +107,8 @@ public class SysDictController {
     @SysLog("修改字典")
     @CacheEvict(value = "dict_details", key = "#sysDict.type")
     @PreAuthorize("@pms.hasPermission('sys_dict_edit')")
-    public ResponseResult updateById(@Valid @RequestBody SysDict sysDict) {
-        return ResponseResult.ok(sysDictService.updateById(sysDict));
+    public Response updateById(@Valid @RequestBody SysDict sysDict) {
+        return Response.ok(sysDictService.updateById(sysDict));
     }
 
 }

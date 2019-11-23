@@ -2,7 +2,7 @@ package org.ratelframework.ratel.upms.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.common.log.annotation.SysLog;
 import org.ratelframework.ratel.upms.api.entity.SysDept;
 import org.ratelframework.ratel.upms.service.ISysDeptService;
@@ -35,8 +35,8 @@ public class SysDeptController {
      * @return SysDept
      */
     @GetMapping("/{id}")
-    public ResponseResult<SysDept> getById(@PathVariable Integer id) {
-        return ResponseResult.ok(sysDeptService.getById(id));
+    public Response<SysDept> getById(@PathVariable Integer id) {
+        return Response.ok(sysDeptService.getById(id));
     }
 
 
@@ -46,8 +46,8 @@ public class SysDeptController {
      * @return 树形菜单
      */
     @GetMapping(value = "/tree")
-    public ResponseResult listDeptTrees() {
-        return ResponseResult.ok(sysDeptService.listDeptTrees());
+    public Response listDeptTrees() {
+        return Response.ok(sysDeptService.listDeptTrees());
     }
 
     /**
@@ -56,8 +56,8 @@ public class SysDeptController {
      * @return 树形菜单
      */
     @GetMapping(value = "/user-tree")
-    public ResponseResult listCurrentUserDeptTrees() {
-        return ResponseResult.ok(sysDeptService.listCurrentUserDeptTrees());
+    public Response listCurrentUserDeptTrees() {
+        return Response.ok(sysDeptService.listCurrentUserDeptTrees());
     }
 
     /**
@@ -69,8 +69,8 @@ public class SysDeptController {
     @SysLog("添加部门")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys_dept_add')")
-    public ResponseResult save(@Valid @RequestBody SysDept sysDept) {
-        return ResponseResult.ok(sysDeptService.saveDept(sysDept));
+    public Response save(@Valid @RequestBody SysDept sysDept) {
+        return Response.ok(sysDeptService.saveDept(sysDept));
     }
 
     /**
@@ -82,8 +82,8 @@ public class SysDeptController {
     @SysLog("删除部门")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_dept_del')")
-    public ResponseResult removeById(@PathVariable Integer id) {
-        return ResponseResult.ok(sysDeptService.removeDeptById(id));
+    public Response removeById(@PathVariable Integer id) {
+        return Response.ok(sysDeptService.removeDeptById(id));
     }
 
     /**
@@ -95,8 +95,8 @@ public class SysDeptController {
     @SysLog("编辑部门")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('sys_dept_edit')")
-    public ResponseResult update(@Valid @RequestBody SysDept sysDept) {
+    public Response update(@Valid @RequestBody SysDept sysDept) {
         sysDept.setUpdateTime(LocalDateTime.now());
-        return ResponseResult.ok(sysDeptService.updateDeptById(sysDept));
+        return Response.ok(sysDeptService.updateDeptById(sysDept));
     }
 }

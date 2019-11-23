@@ -3,7 +3,7 @@ package org.ratelframework.ratel.upms.api.feign;
 import org.ratelframework.ratel.upms.api.dto.UserInfo;
 import org.ratelframework.ratel.common.core.constant.SecurityConstants;
 import org.ratelframework.ratel.common.core.constant.ServiceNameConstants;
-import org.ratelframework.ratel.common.core.utils.ResponseResult;
+import org.ratelframework.ratel.common.core.utils.Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +20,10 @@ public interface RemoteUserService {
 	 *
 	 * @param username 用户名
 	 * @param from     调用标志
-	 * @return ResponseResult
+	 * @return Response
 	 */
 	@GetMapping("/user/info/{username}")
-	ResponseResult<UserInfo> info(@PathVariable("username") String username
+    Response<UserInfo> info(@PathVariable("username") String username
             , @RequestHeader(SecurityConstants.FROM) String from);
 
 	/**
@@ -33,5 +33,5 @@ public interface RemoteUserService {
 	 * @return
 	 */
 	@GetMapping("/social/info/{inStr}")
-	ResponseResult<UserInfo> social(@PathVariable("inStr") String inStr);
+    Response<UserInfo> social(@PathVariable("inStr") String inStr);
 }
