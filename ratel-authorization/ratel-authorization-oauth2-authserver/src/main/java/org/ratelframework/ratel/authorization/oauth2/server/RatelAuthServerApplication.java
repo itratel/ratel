@@ -1,8 +1,7 @@
 package org.ratelframework.ratel.authorization.oauth2.server;
 
+import org.ratelframework.ratel.common.core.annotation.RatelCloudApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
@@ -12,8 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @version 0.0.1
  * @since 0.0.1
  */
-@EnableDiscoveryClient
-@SpringBootApplication
+@RatelCloudApplication
 @EnableFeignClients(basePackages = "org.ratelframework.ratel.upms.api")
 public class RatelAuthServerApplication {
 
