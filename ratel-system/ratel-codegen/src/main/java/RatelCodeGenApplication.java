@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
  * 代码生成模块
  */
 @RatelCloudApplication
-public class PigCodeGenApplication {
+public class RatelCodeGenApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PigCodeGenApplication.class, args);
+		SpringApplication.run(RatelCodeGenApplication.class, args);
 	}
 }
