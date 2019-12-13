@@ -2,6 +2,7 @@ package org.ratelframework.ratel.order.controller;
 
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
+import org.ratelframework.ratel.order.enable.pojo.LoggerService;
 import org.ratelframework.ratel.order.feign.ProductFeignService;
 import org.ratelframework.ratel.order.pojo.po.User;
 import org.ratelframework.ratel.order.service.IUserService;
@@ -33,6 +34,8 @@ public class OrderController {
 
     private final IUserService userService;
 
+    private final LoggerService loggerService;
+
     @GetMapping("/testHello")
     public String testHello(@RequestParam("name") String name) {
         ServiceInstance serviceInstance = loadBalancerClient.choose("product-service");
@@ -47,9 +50,8 @@ public class OrderController {
 
     @GetMapping("/hi")
     public String hello(@RequestParam("name") String name) {
-        return "hello" + name;
+        return "hello" + name + loggerService.saveLog(name);
     }
-
 
     @GetMapping("/user")
     public List<User> user() {

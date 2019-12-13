@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(EnableRatelImportSelector.class)
+@Import({EnableRatelImportSelector.class, EnableRatelImportRegistrar.class})
 public @interface EnableRatel {
 
     String[] value() default {};
@@ -21,8 +21,4 @@ public @interface EnableRatel {
     String[] basePackages() default {};
 
     Class<?>[] basePackageClasses() default {};
-
-    Class<?>[] defaultConfiguration() default {};
-
-    Class<?>[] clients() default {};
 }

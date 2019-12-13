@@ -1,10 +1,9 @@
 package org.ratelframework.ratel.order.enable;
 
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.context.annotation.ImportSelector;
+import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.type.AnnotationMetadata;
-
 import java.util.Map;
 
 /**
@@ -13,29 +12,21 @@ import java.util.Map;
  * @apiNote Describe the function of this class in one sentence
  */
 @Order
-public class EnableRatelImportSelector implements ImportSelector, BeanClassLoaderAware {
-
-    private ClassLoader beanClassLoader;
+public class EnableRatelImportSelector implements ImportSelector {
 
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
         String name = getAnnotationClass().getName();
-        Map<String, Object> annotationAttributes = annotationMetadata.getAnnotationAttributes(name, true);
-        //TODO 继续完成
-        return new String[0];
+        Map<String, Object> attributes = annotationMetadata.getAnnotationAttributes(name, true);
+        AnnotationAttributes annotationAttributes = AnnotationAttributes.fromMap(attributes);
+        return annotationAttributes != null ? annotationAttributes.getStringArray("basePackageClasses") : new String[0];
     }
-
-    @Override
-    public void setBeanClassLoader(ClassLoader classLoader) {
-        this.beanClassLoader = classLoader;
-    }
-
 
     /**
      * Return the source annotation class used by the selector.
      * @return the annotation class
      */
-    protected Class<?> getAnnotationClass() {
+    private Class<?> getAnnotationClass() {
         return EnableRatel.class;
     }
 }
