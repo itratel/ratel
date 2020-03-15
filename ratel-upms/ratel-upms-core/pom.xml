@@ -22,21 +22,21 @@
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-upms-api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- 日志组件依赖-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-log</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- 安全相关-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-security</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- 服务发现 -->

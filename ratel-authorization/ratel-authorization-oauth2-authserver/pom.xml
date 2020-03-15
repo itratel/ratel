@@ -18,14 +18,14 @@
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-core</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!--用户权限管理的接口-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-upms-api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

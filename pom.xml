@@ -50,6 +50,7 @@
         <module>ratel-samples</module>
         <module>ratel-system</module>
         <module>ratel-upms</module>
+        <module>ratel-starter</module>
     </modules>
 
     <dependencyManagement>

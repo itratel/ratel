@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-core</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!--服务发现-->

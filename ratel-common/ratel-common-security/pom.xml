@@ -17,14 +17,14 @@
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-core</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- upms api接口-->
         <dependency>
             <groupId>org.ratelframework</groupId>
             <artifactId>ratel-upms-api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- 元素据生成-->
