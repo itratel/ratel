@@ -15,12 +15,18 @@
         <module>logger-ratel-boot-starter</module>
         <module>excel-ratel-boot-starter</module>
         <module>multi-datasource-ratel-boot-starter</module>
+        <module>distributed-lock-ratel-boot-starter</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
         </dependency>
     </dependencies>
 
