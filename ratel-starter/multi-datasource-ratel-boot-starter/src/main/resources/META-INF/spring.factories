@@ -1,0 +1,5 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.ratelframework.ratel.multidatasource.autoconfigure.datasource.DataSourceAutoConfiguration,\
+  org.ratelframework.ratel.multidatasource.autoconfigure.datasource.JdbcTemplateAutoConfiguration,\
+  org.ratelframework.ratel.multidatasource.autoconfigure.datasource.MyBatisAutoConfiguration

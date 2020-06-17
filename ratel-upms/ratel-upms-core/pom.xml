@@ -28,7 +28,7 @@
         <!-- 日志组件依赖-->
         <dependency>
             <groupId>org.ratelframework</groupId>
-            <artifactId>ratel-common-log</artifactId>
+            <artifactId>logger-ratel-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 

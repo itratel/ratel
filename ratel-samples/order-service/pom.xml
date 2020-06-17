@@ -22,7 +22,7 @@
         <!--多数据源支持-->
         <dependency>
             <groupId>org.ratelframework</groupId>
-            <artifactId>ratel-common-datasource</artifactId>
+            <artifactId>multi-datasource-ratel-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 

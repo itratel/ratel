@@ -2,10 +2,10 @@ package org.ratelframework.ratel.order.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.ratelframework.ratel.common.annotation.PrimaryJdbcTemplate;
-import org.ratelframework.ratel.common.annotation.PrimarySqlSessionTemplate;
-import org.ratelframework.ratel.common.annotation.SubJdbcTemplate;
-import org.ratelframework.ratel.common.annotation.SubSqlSessionTemplate;
+import org.ratelframework.ratel.multidatasource.annotation.PrimaryJdbcTemplate;
+import org.ratelframework.ratel.multidatasource.annotation.PrimarySqlSessionTemplate;
+import org.ratelframework.ratel.multidatasource.annotation.SubJdbcTemplate;
+import org.ratelframework.ratel.multidatasource.annotation.SubSqlSessionTemplate;
 import org.ratelframework.ratel.order.pojo.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.common.core.utils.Response;
-import org.ratelframework.ratel.common.log.annotation.SysLog;
+import org.ratelframework.ratel.logger.annotation.RatelLog;
 import org.ratelframework.ratel.upms.api.entity.SysDict;
 import org.ratelframework.ratel.upms.service.ISysDictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +74,7 @@ public class SysDictController {
      * @param sysDict 字典信息
      * @return success、false
      */
-    @SysLog("添加字典")
+    @RatelLog("添加字典")
     @PostMapping
     @CacheEvict(value = "dict_details", key = "#sysDict.type")
     @PreAuthorize("@pms.hasPermission('sys_dict_add')")
@@ -89,7 +89,7 @@ public class SysDictController {
      * @param type 类型
      * @return Response
      */
-    @SysLog("删除字典")
+    @RatelLog("删除字典")
     @DeleteMapping("/{id}/{type}")
     @CacheEvict(value = "dict_details", key = "#type")
     @PreAuthorize("@pms.hasPermission('sys_dict_del')")
@@ -104,7 +104,7 @@ public class SysDictController {
      * @return success/false
      */
     @PutMapping
-    @SysLog("修改字典")
+    @RatelLog("修改字典")
     @CacheEvict(value = "dict_details", key = "#sysDict.type")
     @PreAuthorize("@pms.hasPermission('sys_dict_edit')")
     public Response updateById(@Valid @RequestBody SysDict sysDict) {

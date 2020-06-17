@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.common.core.constant.CommonConstants;
 import org.ratelframework.ratel.common.core.utils.Response;
-import org.ratelframework.ratel.common.log.annotation.SysLog;
+import org.ratelframework.ratel.logger.annotation.RatelLog;
 import org.ratelframework.ratel.security.utils.SecurityUtils;
 import org.ratelframework.ratel.upms.api.dto.MenuTree;
 import org.ratelframework.ratel.upms.api.entity.SysMenu;
@@ -98,7 +98,7 @@ public class SysMenuController {
      * @param sysMenu 菜单信息
      * @return success/false
      */
-    @SysLog("新增菜单")
+    @RatelLog("新增菜单")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys_menu_add')")
     public Response save(@Valid @RequestBody SysMenu sysMenu) {
@@ -111,7 +111,7 @@ public class SysMenuController {
      * @param id 菜单ID
      * @return success/false
      */
-    @SysLog("删除菜单")
+    @RatelLog("删除菜单")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_menu_del')")
     public Response removeById(@PathVariable Integer id) {
@@ -124,7 +124,7 @@ public class SysMenuController {
      * @param sysMenu
      * @return
      */
-    @SysLog("更新菜单")
+    @RatelLog("更新菜单")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('sys_menu_edit')")
     public Response update(@Valid @RequestBody SysMenu sysMenu) {

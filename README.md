@@ -39,18 +39,19 @@ ratel
      └── ratel-authorization-oauth2-resource-server oauth2资源中心
 └── ratel-common -- 系统公共模块 
      ├── ratel-common-core -- 公共工具类核心包
-     ├── ratel-common-log -- 日志服务自动配置
-     ├── ratel-common-datasource -- 多数据源自动配置
      └── ratel-common-security -- 安全工具类
 ├── ratel-registry -- 服务注册与发现
 ├── ratel-gateway -- gateway网关
 └── ratel-upms -- 用户权限管理模块
      └── ratel-upms-api -- 用户权限管理系统公共api模块
      └── ratel-upms-core -- 用户权限管理系统业务处理模块
+└── ratel-starter -- Ratel扩展实现的starter
+     └── excel-ratel-boot-starter -- excel文件导出starter
+     └── logger-ratel-boot-starter -- 日志相关组件starter
+     └── multi-datasource-ratel-boot-starter -- 多数据源组件starter
 └── ratel-system  -- 与系统相关模块 
      ├── ratel-monitor -- Spring Boot Admin监控
      ├── ratel-skywalking -- 链路调用监控
      └── ratel-codegen -- 化代码生成
-	 
 ```
 

@@ -3,7 +3,7 @@ package org.ratelframework.ratel.upms.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.common.core.utils.Response;
-import org.ratelframework.ratel.common.log.annotation.SysLog;
+import org.ratelframework.ratel.logger.annotation.RatelLog;
 import org.ratelframework.ratel.upms.api.entity.SysDept;
 import org.ratelframework.ratel.upms.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +66,7 @@ public class SysDeptController {
      * @param sysDept 实体
      * @return success/false
      */
-    @SysLog("添加部门")
+    @RatelLog("添加部门")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys_dept_add')")
     public Response save(@Valid @RequestBody SysDept sysDept) {
@@ -79,7 +79,7 @@ public class SysDeptController {
      * @param id ID
      * @return success/false
      */
-    @SysLog("删除部门")
+    @RatelLog("删除部门")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_dept_del')")
     public Response removeById(@PathVariable Integer id) {
@@ -92,7 +92,7 @@ public class SysDeptController {
      * @param sysDept 实体
      * @return success/false
      */
-    @SysLog("编辑部门")
+    @RatelLog("编辑部门")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('sys_dept_edit')")
     public Response update(@Valid @RequestBody SysDept sysDept) {

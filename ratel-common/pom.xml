@@ -13,9 +13,7 @@
     <name>ratel-common</name>
 
     <modules>
-        <module>ratel-common-datasource</module>
         <module>ratel-common-security</module>
-        <module>ratel-common-log</module>
         <module>ratel-common-core</module>
     </modules>
 
