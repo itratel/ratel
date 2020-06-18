@@ -25,6 +25,12 @@
             <artifactId>multi-datasource-ratel-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- 分布式锁支持 -->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>distributed-lock-ratel-boot-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
