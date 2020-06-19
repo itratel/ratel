@@ -9,7 +9,7 @@ import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.ratelframework.ratel.multidatasource.annotation.*;
 import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnCandidateDataSource;
 import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnPrimaryDataSource;
-import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnSubDataSource;
+import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnSecondaryDataSource;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -49,15 +49,15 @@ public class MyBatisAutoConfiguration {
 	}
 
 	/**
-	 * Configuration mybatis template for Sub data source
+	 * Configuration mybatis template for Secondary data source
 	 */
 	@Bean
-	@SubSqlSessionTemplate
-	@ConditionalOnSubDataSource
-	@ConditionalOnProperty(name = "ratel.datasource.sub.enable-sql-session-template", havingValue = "true")
-	@ConditionalOnMissingBean(name = SubSqlSessionTemplate.NAME)
-	public SqlSessionTemplate subSqlSessionTemplateSub(MybatisProperties properties,
-													@SubDataSource DataSource dataSource,
+	@SecondarySqlSessionTemplate
+	@ConditionalOnSecondaryDataSource
+	@ConditionalOnProperty(name = "ratel.datasource.secondary.enable-sql-session-template", havingValue = "true")
+	@ConditionalOnMissingBean(name = SecondarySqlSessionTemplate.NAME)
+	public SqlSessionTemplate secondarySqlSessionTemplate(MybatisProperties properties,
+													@SecondaryDataSource DataSource dataSource,
 													ResourceLoader resourceLoader) throws Exception {
 		return new SqlSessionTemplate(this.createSqlSessionFactory(properties, dataSource, resourceLoader));
 	}
@@ -70,7 +70,7 @@ public class MyBatisAutoConfiguration {
 	@ConditionalOnCandidateDataSource
 	@ConditionalOnProperty(name = "ratel.datasource.candidate.enable-sql-session-template", havingValue = "true")
 	@ConditionalOnMissingBean(name = CandidateSqlSessionTemplate.NAME)
-	public SqlSessionTemplate candidateSqlSessionTemplateCandidate(MybatisProperties properties,
+	public SqlSessionTemplate candidateSqlSessionTemplate(MybatisProperties properties,
 													@CandidateDataSource DataSource dataSource,
 													ResourceLoader resourceLoader) throws Exception {
 		return new SqlSessionTemplate(this.createSqlSessionFactory(properties, dataSource, resourceLoader));

@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.ratelframework.ratel.multidatasource.annotation.PrimaryJdbcTemplate;
 import org.ratelframework.ratel.multidatasource.annotation.PrimarySqlSessionTemplate;
-import org.ratelframework.ratel.multidatasource.annotation.SubJdbcTemplate;
-import org.ratelframework.ratel.multidatasource.annotation.SubSqlSessionTemplate;
+import org.ratelframework.ratel.multidatasource.annotation.SecondaryJdbcTemplate;
+import org.ratelframework.ratel.multidatasource.annotation.SecondarySqlSessionTemplate;
 import org.ratelframework.ratel.order.pojo.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -26,7 +26,7 @@ public class UserServiceImpl implements IUserService {
     private SqlSessionTemplate primarySqlSessionTemplate;
 
     @Autowired
-    @SubSqlSessionTemplate
+    @SecondarySqlSessionTemplate
     private SqlSessionTemplate subSqlSessionTemplate;
 
     @Autowired
@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
     private JdbcTemplate primaryJdbcTemplate;
 
     @Autowired
-    @SubJdbcTemplate
+    @SecondaryJdbcTemplate
     private JdbcTemplate subJdbcTemplate;
 
     @Override

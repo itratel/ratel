@@ -9,18 +9,18 @@ import java.lang.annotation.Target;
 
 
 /**
- * <p>SubJdbcTemplate<p/>
- * Indicator for the bean that stands for Sub data warehouse JdbcTemplate
+ * <p>SecondarySqlSessionTemplate<p/>
+ * Indicator for the bean that stands for Secondary MyBatis SqlSession
  * @author whd.java@gmail.com
  * @date 2020/6/17 14:34
  * @since 0.0.1
  */
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Qualifier(SubJdbcTemplate.NAME)
-public @interface SubJdbcTemplate {
+@Qualifier(SecondarySqlSessionTemplate.NAME)
+public @interface SecondarySqlSessionTemplate {
     /**
-     * The qualifier name
+     * The qualifier name.
      */
-    String NAME = "jdbcTemplateDwh";
+    String NAME = "secondarySqlSessionTemplate";
 }

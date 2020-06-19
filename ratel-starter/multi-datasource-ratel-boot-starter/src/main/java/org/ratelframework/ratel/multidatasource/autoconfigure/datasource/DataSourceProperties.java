@@ -32,9 +32,9 @@ public class DataSourceProperties {
     private ExtendedDataSourceProperties primary;
 
     /**
-     * Extended datasource properties for sub datasource
+     * Extended datasource properties for secondary datasource
      */
-    private ExtendedDataSourceProperties sub;
+    private ExtendedDataSourceProperties secondary;
 
     /**
      * Extended datasource properties for candidate datasource
@@ -48,7 +48,7 @@ public class DataSourceProperties {
          * Should JdbcTemplate support be turned on.
          *
          * @see JdbcTemplateAutoConfiguration#primaryJdbcTemplate(DataSource)
-         * @see JdbcTemplateAutoConfiguration#subJdbcTemplate(DataSource)
+         * @see JdbcTemplateAutoConfiguration#secondaryJdbcTemplate(DataSource)
          * @see JdbcTemplateAutoConfiguration#candidateJdbcTemplate(DataSource)
          */
         private boolean enableJdbcTemplate = false;
@@ -57,8 +57,8 @@ public class DataSourceProperties {
          * Should MyBatis support be turned on.
          *
          * @see MyBatisAutoConfiguration#primarySqlSessionTemplate(MybatisProperties, DataSource, ResourceLoader)
-         * @see MyBatisAutoConfiguration#subSqlSessionTemplateSub(MybatisProperties, DataSource, ResourceLoader)
-         * @see MyBatisAutoConfiguration#candidateSqlSessionTemplateCandidate(MybatisProperties, DataSource, ResourceLoader)
+         * @see MyBatisAutoConfiguration#secondarySqlSessionTemplate(MybatisProperties, DataSource, ResourceLoader)
+         * @see MyBatisAutoConfiguration#candidateSqlSessionTemplate(MybatisProperties, DataSource, ResourceLoader)
          */
         private boolean enableSqlSessionTemplate = false;
     }

@@ -3,7 +3,7 @@ package org.ratelframework.ratel.multidatasource.autoconfigure.datasource;
 import org.ratelframework.ratel.multidatasource.annotation.*;
 import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnCandidateDataSource;
 import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnPrimaryDataSource;
-import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnSubDataSource;
+import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnSecondaryDataSource;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -42,14 +42,14 @@ public class JdbcTemplateAutoConfiguration {
 	}
 
 	/**
-	 * Configuration jdbc template for sub data source
+	 * Configuration jdbc template for Secondary data source
 	 */
 	@Bean
-	@SubJdbcTemplate
-	@ConditionalOnSubDataSource
-	@ConditionalOnProperty(name = "ratel.datasource.sub.enable-jdbc-template", havingValue = "true")
-	@ConditionalOnMissingBean(name = SubJdbcTemplate.NAME)
-	public JdbcTemplate subJdbcTemplate(@SubDataSource DataSource dataSource) {
+	@SecondaryJdbcTemplate
+	@ConditionalOnSecondaryDataSource
+	@ConditionalOnProperty(name = "ratel.datasource.secondary.enable-jdbc-template", havingValue = "true")
+	@ConditionalOnMissingBean(name = SecondaryJdbcTemplate.NAME)
+	public JdbcTemplate secondaryJdbcTemplate(@SecondaryDataSource DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
 	}
 

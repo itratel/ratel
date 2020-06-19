@@ -14,8 +14,8 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Qualifier(SubDataSource.NAME)
-public @interface SubDataSource {
+@Qualifier(SecondaryDataSource.NAME)
+public @interface SecondaryDataSource {
 
-    String NAME = "subDataSource";
+    String NAME = "secondaryDataSource";
 }

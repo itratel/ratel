@@ -3,10 +3,10 @@ package org.ratelframework.ratel.multidatasource.autoconfigure.datasource;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.ratelframework.ratel.multidatasource.annotation.CandidateDataSource;
 import org.ratelframework.ratel.multidatasource.annotation.PrimaryDataSource;
-import org.ratelframework.ratel.multidatasource.annotation.SubDataSource;
+import org.ratelframework.ratel.multidatasource.annotation.SecondaryDataSource;
 import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnMissingCandidateDataSource;
 import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnMissingPrimaryDataSource;
-import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnMissingSubDataSource;
+import org.ratelframework.ratel.multidatasource.autoconfigure.condition.ConditionalOnMissingSecondaryDataSource;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -59,19 +59,19 @@ public class DataSourceAutoConfiguration {
     }
 
     /**
-     * Configuration for sub data source
+     * Configuration for secondary data source
      */
     @Configuration
-    @ConditionalOnProperty(prefix = "ratel.datasource.sub.config", name = "url")
-    @ConditionalOnMissingSubDataSource
-    static class SubDataSourceConfiguration {
+    @ConditionalOnProperty(prefix = "ratel.datasource.secondary.config", name = "url")
+    @ConditionalOnMissingSecondaryDataSource
+    static class SecondaryDataSourceConfiguration {
 
         @Bean
-        @SubDataSource
+        @SecondaryDataSource
         @ConditionalOnClass(DruidDataSource.class)
-        @ConditionalOnProperty(name = "ratel.datasource.sub.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
-        @ConfigurationProperties(prefix = "ratel.datasource.sub.config")
-        public DruidDataSource subDataSource() {
+        @ConditionalOnProperty(name = "ratel.datasource.secondary.config.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
+        @ConfigurationProperties(prefix = "ratel.datasource.secondary.config")
+        public DruidDataSource secondaryDataSource() {
             return DataSourceBuilder.create().type(DruidDataSource.class).build();
         }
     }

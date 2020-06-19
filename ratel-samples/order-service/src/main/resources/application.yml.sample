@@ -16,7 +16,7 @@ ratel:
         max-pool-prepared-statement-per-connection-size: 20
       enable-jdbc-template: true
       enable-sql-session-template: true
-    sub:
+    secondary:
       config:
         url: jdbc:mysql://localhost:3307/mysql_db1?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
         username: root
