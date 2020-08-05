@@ -46,7 +46,8 @@ ratel
      └── ratel-upms-api -- 用户权限管理系统公共api模块
      └── ratel-upms-core -- 用户权限管理系统业务处理模块
 └── ratel-starter -- Ratel扩展实现的starter
-     └── excel-ratel-boot-starter -- excel文件导出starter
+     └── distributed-lock-ratel-boot-starter -- 分布式锁starter
+     └── excel-ratel-boot-starter -- excel文件相关starter
      └── logger-ratel-boot-starter -- 日志相关组件starter
      └── multi-datasource-ratel-boot-starter -- 多数据源组件starter
 └── ratel-system  -- 与系统相关模块 
