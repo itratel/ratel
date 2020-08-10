@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 安全工具类
  *
- * @author L.cm
+ * @author whd.java@gmail.com
  */
 @UtilityClass
 public class SecurityUtils {
