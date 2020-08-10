@@ -5,7 +5,6 @@ import lombok.Getter;
 
 /**
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/24 10:17
  * @apiNote Describe the function of this class in one sentence
  * @since 0.0.1

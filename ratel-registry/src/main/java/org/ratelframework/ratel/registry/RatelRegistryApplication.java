@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 
 /**
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/22 14:37
  * @apiNote Describe the function of this class in one sentence
  * <p>

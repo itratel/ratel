@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
  * @author whd.java@gmail.com
  * @date 2019/10/24 13:25
  * @apiNote Describe the function of this class in one sentence
- * @version 0.0.1
  * @since 0.0.1
  */
 @RatelCloudApplication

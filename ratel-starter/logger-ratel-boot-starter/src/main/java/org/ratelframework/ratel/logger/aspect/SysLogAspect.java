@@ -20,7 +20,6 @@ import org.springframework.util.StopWatch;
  * </p>
  * @author whd.java@mail.com
  * @date 2019/11/1 15:17
- * @version 0.0.1
  * @since 0.0.1
  */
 @Aspect

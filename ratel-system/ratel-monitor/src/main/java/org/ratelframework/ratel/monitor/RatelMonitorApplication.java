@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 /**
  * <p>微服务监控服务</p>
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/23 11:59
  * @since 0.0.1
  */

@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/22 15:00
  * @apiNote Describe the function of this class in one sentence
  * @since 0.0.1

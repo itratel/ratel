@@ -8,7 +8,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 /**
  * @author whd.java@gmail.com
  * @date 2019/10/23 18:06
- * @version 0.0.1
  * @since 0.0.1
  * @see org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurer
  * @see org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter

@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
  * </p>
  * @author whd.java@gmail.com
  * @date 2019/11/1 17:56
- * @version 0.0.1
  * @since 0.0.1
  */
 @RatelCloudApplication

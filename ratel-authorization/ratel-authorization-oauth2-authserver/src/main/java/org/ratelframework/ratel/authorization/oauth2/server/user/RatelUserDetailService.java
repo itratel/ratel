@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
  * @date 2019/10/25 13:16
  * @apiNote Describe the function of this class in one sentence
  * @since 0.0.1
- * @version 0.0.1
  */
 @Service
 @Setter(onMethod__={@Autowired})

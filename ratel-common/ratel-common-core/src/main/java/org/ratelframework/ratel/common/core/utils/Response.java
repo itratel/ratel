@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 /**
  * @author whd.java@gmail.com
- * @version 0.0.1
  * @date 2019/10/22 15:03
  * @apiNote Response Body
  * @since 0.0.1
