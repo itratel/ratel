@@ -17,8 +17,9 @@ spring:
         server-addr: localhost:8848
         file-extension: yml
         namespace: c0797ecb-301e-4137-84b7-7f14964712df
-        group: ratel-order
+        group: order-service
         enabled: true
+        shared-dataids: order-service-dev.yml
   profiles:
     active: dev
   main:
