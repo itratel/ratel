@@ -15,13 +15,14 @@
     <name>ratel</name>
     <description>
         Ratel MicroService Architecture
-        这里的SpringCloud和Spring Boot的版本要匹配，可以参考以下了解，或者直接SpringCloud官网了解https://spring.io/projects/spring-cloud
-        Cloud Release 	Boot Version
-        Hoxton          2.2.x
-        Greenwich       2.1.x
-        Finchley        2.0.x
-        Edgware         1.5.x
-        Dalston         1.5.x
+        这里的Spring Cloud和Spring Boot以及Spring Cloud
+        Alibaba的版本要匹配，可以参考以下了解，或者直接SpringCloud官网了解https://spring.io/projects/spring-cloud
+        Spring Cloud Version Boot Version Spring Cloud Alibaba Version
+        Hoxton 2.2.x 2.2.x
+        Greenwich 2.1.x 2.1.x
+        Finchley 2.0.x 2.0.x
+        Edgware 1.5.x 1.5.x
+        Dalston 1.5.x 1.5.x
     </description>
 
     <properties>

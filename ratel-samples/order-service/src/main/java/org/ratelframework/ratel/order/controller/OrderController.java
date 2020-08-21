@@ -7,8 +7,11 @@ import org.ratelframework.ratel.order.feign.ProductFeignService;
 import org.ratelframework.ratel.order.pojo.po.User;
 import org.ratelframework.ratel.order.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +25,7 @@ import java.util.List;
  * @date 2019/05/11 00:11
  * @apiNote Describe the function of this class in one sentence
  */
+@RefreshScope
 @RestController
 @RequiredArgsConstructor(onConstructor__={@Autowired})
 public class OrderController {
@@ -35,6 +39,11 @@ public class OrderController {
     private final IUserService userService;
 
     private final LoggerService loggerService;
+
+    private final ConfigurableApplicationContext configurableApplicationContext;
+
+    @Value("${org.age}")
+    private String age;
 
     @GetMapping("/testHello")
     public String testHello(@RequestParam("name") String name) {
@@ -65,6 +74,12 @@ public class OrderController {
         User one = userService.findOne();
         User selectOne = userService.queryOne();
         return Lists.newArrayList(one, selectOne);
+    }
+
+    @GetMapping("/student")
+    public String student() {
+        String property = configurableApplicationContext.getEnvironment().getProperty("org.name");
+        return property + ":" + age;
     }
 
 
