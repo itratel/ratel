@@ -1,5 +1,7 @@
 package org.ratelframework.ratel.gateway.filter;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.buffer.ByteBufAllocator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -14,6 +16,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -53,24 +56,33 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
         HttpMethod method = request.getMethod();
         StringBuilder builder = new StringBuilder();
         URI targetUri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-        Flux<DataBuffer> body = request.getBody();
         ServerHttpRequest serverHttpRequest = request.mutate().uri(request.getURI()).build();
-        body.subscribe(dataBuffer -> {
-            InputStream inputStream = dataBuffer.asInputStream();
+        if (HttpMethod.GET.equals(method)) {
+            MultiValueMap<String, String> queryParams = request.getQueryParams();
             try {
-                builder.append(StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8));
-            } catch (IOException e) {
+                builder.append(new ObjectMapper().writeValueAsString(queryParams));
+            } catch (JsonProcessingException e) {
                 log.error(e.getMessage(), e);
             }
-        });
+        } else if (HttpMethod.POST.equals(method)) {
+            Flux<DataBuffer> body = request.getBody();
+            body.subscribe(dataBuffer -> {
+                InputStream inputStream = dataBuffer.asInputStream();
+                try {
+                    builder.append(StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8));
+                } catch (IOException e) {
+                    log.error(e.getMessage(), e);
+                }
+            });
+            request = new ServerHttpRequestDecorator(serverHttpRequest) {
+                @Override
+                public Flux<DataBuffer> getBody() {
+                    final DataBufferFactory dataBufferFactory = new NettyDataBufferFactory(ByteBufAllocator.DEFAULT);
+                    return Flux.just(dataBufferFactory.wrap(builder.toString().getBytes(StandardCharsets.UTF_8)));
+                }
+            };
+        }
 
-        request = new ServerHttpRequestDecorator(serverHttpRequest) {
-            @Override
-            public Flux<DataBuffer> getBody() {
-                final DataBufferFactory dataBufferFactory = new NettyDataBufferFactory(ByteBufAllocator.DEFAULT);
-                return Flux.just(dataBufferFactory.wrap(builder.toString().getBytes(StandardCharsets.UTF_8)));
-            }
-        };
         InetSocketAddress remoteAddress = request.getRemoteAddress();
         return chain.filter(exchange.mutate().request(request).build()).then(Mono.fromRunnable(() -> {
             ServerHttpResponse response = exchange.getResponse();

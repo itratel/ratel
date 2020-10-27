@@ -4,13 +4,9 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
-
-import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR;
 
 /**
  * <p>AuthorizationFilter<p/>
@@ -21,9 +17,6 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.G
  */
 @Component
 public class AuthorizationFilter implements GlobalFilter, Ordered {
-
-
-    private static final String LOCAL_HOST = "127.0.0.1";
 
     /**
      * Process the Web request and (optionally) delegate to the next {@code WebFilter}
@@ -36,12 +29,6 @@ public class AuthorizationFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         //Get request url
-        URI uri = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
-        Assert.notNull(uri, "请求的路由地址不能为空");
-        String host = uri.getHost();
-        if (host.equals(LOCAL_HOST)) {
-            return Mono.empty();
-        }
         return chain.filter(exchange);
     }
 
