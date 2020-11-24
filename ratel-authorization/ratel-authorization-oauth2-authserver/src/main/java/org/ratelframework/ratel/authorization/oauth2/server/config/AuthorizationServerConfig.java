@@ -2,23 +2,23 @@ package org.ratelframework.ratel.authorization.oauth2.server.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-
-import javax.sql.DataSource;
-
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 /**
  * @author whd.java@gmail.com
@@ -28,43 +28,76 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableAuthorizationServer
-@RequiredArgsConstructor(onConstructor__={@Autowired})
+@RequiredArgsConstructor(onConstructor__=@Autowired)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Bean
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource(){
-       return DataSourceBuilder.create().build();
-    }
+    private final AuthorizationCodeServices authorizationCodeServices;
+
+    private final AuthenticationManager authenticationManager;
+
+    private final ClientDetailsService clientDetailsService;
 
     /***
      * 配置appId和appSecret和callbackUrl
+     * 用来配置客户端详情服务，客户端详情信息在这里初始化
+     * 你可以把客户端信息写死或者通过数据库来存储和调用详情信息
      * @param clients 客户端配置
      * @throws Exception
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(jdbcClientDetailsService());
+        clients
+                //使用内存存储
+                .inMemory()
+                //client_id
+                .withClient("client1")
+                //客户端的密钥
+                .secret(new BCryptPasswordEncoder().encode("secret"))
+                //可以访问的资源列表
+                .resourceIds("res1", "res2")
+                //授权模式
+                .authorizedGrantTypes("authorization_code", "password", "client-credentials", "implicit", "refresh_token")
+                //允许授权的范围，相当于客户端的权限
+                .scopes("all")
+                //跳转到授权页面
+                .autoApprove(false)
+                //验证回调地址
+                .redirectUris("http://www.baidu.com");
     }
 
     /***
      * 认证服务端点配置
+     * 用来配置令牌的访问端点和令牌服务（token services）
      * @param endpoints 端点
      * @throws Exception
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore());
-        endpoints.reuseRefreshTokens(true);
+        endpoints
+                //密码模式 必须要的配置
+                .authenticationManager(authenticationManager)
+                //授权码模式需要的配置
+                .authorizationCodeServices(authorizationCodeServices)
+                //令牌管理的服务，不管什么模式都需要
+                .tokenServices(serverTokenServices())
+                //允许post方式访问令牌
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST);
     }
 
+    /***
+     * 用来配置令牌端点的安全策略
+     * @param security
+     * @throws Exception
+     */
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-        oauthServer
-                //允许表单认证
-                .allowFormAuthenticationForClients()
-                .checkTokenAccess("permitAll()");
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security
+                //端点/oauth/token_key完全公开
+                .tokenKeyAccess("permitAll()")
+                //端点/oauth/check_token完全公开
+                .checkTokenAccess("permitAll()")
+                //允许表单认证来申请令牌
+                .allowFormAuthenticationForClients();
     }
 
     /***
@@ -76,12 +109,37 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Bean
     public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource());
+        //使用内存来存储令牌（普通令牌）
+        return new InMemoryTokenStore();
     }
 
+    /***
+     * 令牌管理服务
+     * @return {@link AuthorizationServerTokenServices}
+     */
     @Bean
-    public ClientDetailsService jdbcClientDetailsService(){
-        return new JdbcClientDetailsService(dataSource());
+    public AuthorizationServerTokenServices serverTokenServices() {
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        //客户端详情服务
+        tokenServices.setClientDetailsService(clientDetailsService);
+        //是否产生刷新令牌
+        tokenServices.setSupportRefreshToken(true);
+        //令牌存储策略
+        tokenServices.setTokenStore(tokenStore());
+        //令牌默认有效期2小时
+        tokenServices.setAccessTokenValiditySeconds(7200);
+        //数显令牌默认有效期三天
+        tokenServices.setRefreshTokenValiditySeconds(259200);
+        return tokenServices;
+    }
+
+    /***
+     * 授权码模式的授权码存储服务
+     * @return {@link AuthorizationCodeServices}
+     */
+    @Bean
+    public AuthorizationCodeServices authorizationCodeServices() {
+        return new InMemoryAuthorizationCodeServices();
     }
 
 }

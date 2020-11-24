@@ -2,8 +2,9 @@ package org.ratelframework.ratel.authorization.oauth2.server.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,12 +20,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /***
-     * GET  http://localhost:8083/authserver/oauth/authorize?client_id=client_1&response_type=code
+     * 获取授权码的接口方法
+     * GET  http://localhost:8083/authserver/oauth/authorize?client_id=client1&response_type=code
+     * &scope-all&redirect_uri=http://www.baidu.com
      */
+
     /***
+     * 获取token的接口方法
      * POST http://client_1:123456@localhost:8083/authserver/oauth/token
+     * client_id: client1
+     * client_secret: secret
      * grant_type: authorization_code
      * code: 2PeXZq
+     * redirect_uri：http://www.baidu.com
      */
     /***
      * 注册加密器
@@ -36,15 +44,24 @@ public class AuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /***
-     * 内存保存账户信息/配置认证信息
-     * @param auth auth
+     * 认证管理器
+     * @return {@link AuthenticationManager}
      * @throws Exception
      */
+    @Bean
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("123456")).roles("ADMIN")
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/r/**").hasAnyAuthority("p1")
+                .antMatchers("/login*").authenticated()
+                .anyRequest().permitAll()
                 .and()
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER");
+                .formLogin();
     }
 }
