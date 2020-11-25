@@ -19,12 +19,10 @@ public interface RemoteUserService {
 	 * 通过用户名查询用户、角色信息
 	 *
 	 * @param username 用户名
-	 * @param from     调用标志
-	 * @return Response
+	 * @return {@link Response<UserInfo>}
 	 */
 	@GetMapping("/user/info/{username}")
-    Response<UserInfo> info(@PathVariable("username") String username
-            , @RequestHeader(SecurityConstants.FROM) String from);
+    Response<UserInfo> info(@PathVariable("username") String username);
 
 	/**
 	 * 通过社交账号查询用户、角色信息

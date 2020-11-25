@@ -54,7 +54,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //客户端的密钥
                 .secret(new BCryptPasswordEncoder().encode("secret"))
                 //可以访问的资源列表
-                .resourceIds("res1", "res2")
+                .resourceIds("res1")
                 //授权模式
                 .authorizedGrantTypes("authorization_code", "password", "client-credentials", "implicit", "refresh_token")
                 //允许授权的范围，相当于客户端的权限
@@ -86,7 +86,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /***
      * 用来配置令牌端点的安全策略
-     * @param security
+     * @param security security
      * @throws Exception
      */
     @Override

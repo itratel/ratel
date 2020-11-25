@@ -1,10 +1,11 @@
 package org.ratelframework.ratel.upms.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.common.core.utils.Response;
-import org.ratelframework.ratel.security.utils.SecurityUtils;
+import org.ratelframework.ratel.upms.api.dto.UserInfo;
 import org.ratelframework.ratel.upms.api.entity.SysUser;
 import org.ratelframework.ratel.upms.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +20,27 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-11-01
  */
 @RestController
-@RequiredArgsConstructor(onConstructor__={@Autowired})
 @RequestMapping("/user")
+@RequiredArgsConstructor(onConstructor__=@Autowired)
 public class SysUserController {
-
 
     private final ISysUserService userService;
 
     /**
-     * 获取当前用户全部信息
-     *
-     * @return 用户信息
+     * 根据用户名查询用户信息
+     * @param username 用户名
+     * @return {@link Response<UserInfo>}
      */
-    @GetMapping(value = {"/info"})
-    public Response info() {
-        String username = SecurityUtils.getUser().getUsername();
-        SysUser user = userService.getOne(Wrappers.<SysUser>query()
-                .lambda().eq(SysUser::getUsername, username));
+    @GetMapping(value = "/info/{username}")
+    public Response<UserInfo> info(@PathVariable("username") String username) {
+        LambdaQueryWrapper<SysUser> queryWrapper = Wrappers
+                .<SysUser>lambdaQuery().eq(SysUser::getUsername, username);
+        SysUser user = userService.getOne(queryWrapper);
         if (user == null) {
-            return Response.error("获取当前用户信息失败");
+            return Response.ok();
         }
-        return null;
-//        return Response.ok(userService.getUserInfo(user));
+        //TODO 权限和角色列表还需完善
+        UserInfo userInfo = UserInfo.of(user, null, null);
+        return Response.ok(userInfo);
     }
 }
