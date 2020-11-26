@@ -34,6 +34,7 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
      * code: 2PeXZq
      * redirect_uri：http://www.baidu.com
      */
+
     /***
      * 注册加密器
      * @return BCryptPasswordEncoder
@@ -46,7 +47,7 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
     /***
      * 认证管理器
      * @return {@link AuthenticationManager}
-     * @throws Exception
+     * @throws Exception 注册认证管理器的异常信息
      */
     @Bean
     @Override
@@ -54,6 +55,18 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
         return super.authenticationManagerBean();
     }
 
+    /**
+     * Override this method to configure the {@link HttpSecurity}. Typically subclasses
+     * should not invoke this method by calling super as it may override their
+     * configuration. The default configuration is:
+     *
+     * <pre>
+     * http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+     * </pre>
+     *
+     * @param http the {@link HttpSecurity} to modify
+     * @throws Exception if an error occurs
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()

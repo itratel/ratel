@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -31,18 +32,20 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @RequiredArgsConstructor(onConstructor__=@Autowired)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private final AuthorizationCodeServices authorizationCodeServices;
-
     private final AuthenticationManager authenticationManager;
 
     private final ClientDetailsService clientDetailsService;
+
+    private final UserDetailsService userDetailsService;
+
+    private final PasswordEncoder passwordEncoder;
 
     /***
      * 配置appId和appSecret和callbackUrl
      * 用来配置客户端详情服务，客户端详情信息在这里初始化
      * 你可以把客户端信息写死或者通过数据库来存储和调用详情信息
      * @param clients 客户端配置
-     * @throws Exception
+     * @throws Exception Exception
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -52,7 +55,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //client_id
                 .withClient("client1")
                 //客户端的密钥
-                .secret(new BCryptPasswordEncoder().encode("secret"))
+                .secret(passwordEncoder.encode("secret"))
                 //可以访问的资源列表
                 .resourceIds("res1")
                 //授权模式
@@ -77,9 +80,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //密码模式 必须要的配置
                 .authenticationManager(authenticationManager)
                 //授权码模式需要的配置
-                .authorizationCodeServices(authorizationCodeServices)
+                .authorizationCodeServices(authorizationCodeServices())
                 //令牌管理的服务，不管什么模式都需要
-                .tokenServices(serverTokenServices())
+                .tokenServices(tokenServices())
+                //客户端信息
+                .userDetailsService(userDetailsService)
                 //允许post方式访问令牌
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST);
     }
@@ -115,10 +120,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /***
      * 令牌管理服务
+     * 用来从创建令牌，获取令牌以及刷新令牌的服务
      * @return {@link AuthorizationServerTokenServices}
      */
     @Bean
-    public AuthorizationServerTokenServices serverTokenServices() {
+    public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         //客户端详情服务
         tokenServices.setClientDetailsService(clientDetailsService);
@@ -130,11 +136,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         tokenServices.setAccessTokenValiditySeconds(7200);
         //数显令牌默认有效期三天
         tokenServices.setRefreshTokenValiditySeconds(259200);
+        //token增强
+        tokenServices.setTokenEnhancer((accessToken, authentication) -> {
+            //TODO token增强
+            return accessToken;
+        });
         return tokenServices;
     }
 
     /***
-     * 授权码模式的授权码存储服务
+     * Services for issuing and storing authorization codes.
+     * 用于发出和存储【授权代码】的服务
      * @return {@link AuthorizationCodeServices}
      */
     @Bean

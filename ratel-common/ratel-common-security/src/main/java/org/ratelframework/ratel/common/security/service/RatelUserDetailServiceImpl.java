@@ -15,7 +15,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ import static org.ratelframework.ratel.common.core.utils.ResponseUtil.unwrap;
  * @date 2019/10/25 13:16
  * @since 1.0.0
  */
-@Service
+@Component
 @RequiredArgsConstructor(onConstructor__=@Autowired)
 public class RatelUserDetailServiceImpl implements UserDetailsService {
 
