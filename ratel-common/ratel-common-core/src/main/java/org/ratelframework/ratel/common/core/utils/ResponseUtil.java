@@ -19,7 +19,7 @@ public class ResponseUtil {
      * @return {@link T}
      */
     public static <T> T unwrap(Response<T> response) {
-        Assert.notNull(response, "用户信息不能为空");
+        Assert.notNull(response, "响应对象Response<T>不能为空");
         if (response.getCode() == HttpStatus.OK.value()) {
             return response.getData();
         }
