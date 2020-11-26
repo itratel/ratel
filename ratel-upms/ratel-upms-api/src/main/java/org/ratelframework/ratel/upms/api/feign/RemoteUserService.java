@@ -1,13 +1,11 @@
 package org.ratelframework.ratel.upms.api.feign;
 
-import org.ratelframework.ratel.upms.api.dto.UserInfo;
-import org.ratelframework.ratel.common.core.constant.SecurityConstants;
 import org.ratelframework.ratel.common.core.constant.ServiceNameConstants;
 import org.ratelframework.ratel.common.core.utils.Response;
+import org.ratelframework.ratel.upms.api.dto.UserInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
  * @author whd.java@gmail.com
@@ -28,7 +26,7 @@ public interface RemoteUserService {
 	 * 通过社交账号查询用户、角色信息
 	 *
 	 * @param inStr appid@code
-	 * @return
+	 * @return {@link Response<UserInfo>}
 	 */
 	@GetMapping("/social/info/{inStr}")
     Response<UserInfo> social(@PathVariable("inStr") String inStr);

@@ -21,6 +21,13 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!--公共安全核心包-->
+        <dependency>
+            <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-common-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!--用户权限管理的接口-->
         <dependency>
             <groupId>org.ratelframework</groupId>

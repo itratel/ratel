@@ -1,11 +1,12 @@
 package org.ratelframework.ratel.upms.api.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.ratelframework.ratel.upms.api.entity.SysUser;
-import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>用户基本信息</p>
@@ -23,10 +24,10 @@ public class UserInfo implements Serializable {
 	/**
 	 * 权限标识集合
 	 */
-	private String[] permissions;
+	private List<String> permissions;
 
 	/**
 	 * 角色集合
 	 */
-	private Integer[] roles;
+	private List<Integer> roles;
 }

@@ -2,8 +2,9 @@ package org.ratelframework.ratel.upms.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.AllArgsConstructor;
-import org.ratelframework.ratel.security.utils.SecurityUtils;
+import org.ratelframework.ratel.common.security.utils.SecurityUtils;
 import org.ratelframework.ratel.upms.api.dto.DeptTree;
 import org.ratelframework.ratel.upms.api.entity.SysDept;
 import org.ratelframework.ratel.upms.api.entity.SysDeptRelation;
@@ -11,7 +12,6 @@ import org.ratelframework.ratel.upms.api.vo.TreeUtil;
 import org.ratelframework.ratel.upms.mapper.SysDeptMapper;
 import org.ratelframework.ratel.upms.service.ISysDeptRelationService;
 import org.ratelframework.ratel.upms.service.ISysDeptService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

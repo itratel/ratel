@@ -1,11 +1,10 @@
-package org.ratelframework.ratel.security.utils;
+package org.ratelframework.ratel.common.security.utils;
 
 
 import cn.hutool.core.util.StrUtil;
-
 import lombok.experimental.UtilityClass;
 import org.ratelframework.ratel.common.core.constant.SecurityConstants;
-import org.ratelframework.ratel.security.service.RatelUser;
+import org.ratelframework.ratel.common.security.model.RatelUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;

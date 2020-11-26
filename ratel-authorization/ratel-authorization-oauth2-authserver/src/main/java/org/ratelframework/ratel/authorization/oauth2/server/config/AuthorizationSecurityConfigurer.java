@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-public class AuthorizationSecurityConfig extends WebSecurityConfigurerAdapter {
+public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     /***
      * 获取授权码的接口方法

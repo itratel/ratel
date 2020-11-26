@@ -1,4 +1,4 @@
-package org.ratelframework.ratel.security.component;
+package org.ratelframework.ratel.common.security.component;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
