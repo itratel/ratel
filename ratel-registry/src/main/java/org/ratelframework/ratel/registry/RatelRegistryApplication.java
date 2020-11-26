@@ -13,7 +13,7 @@ import org.springframework.boot.SpringApplication;
  * @see @EnableDiscoveryClient
  * @see @EnableCircuitBreaker
  * </p>
- * @since 0.0.1
+ * @since 1.0.0
  */
 @EnableRegistryServer
 public class RatelRegistryApplication {

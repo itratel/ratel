@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  * </p>
  * @author whd.java@gmail.com
  * @date 2019/11/20 00:10
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Profile("prod")
 @Configuration

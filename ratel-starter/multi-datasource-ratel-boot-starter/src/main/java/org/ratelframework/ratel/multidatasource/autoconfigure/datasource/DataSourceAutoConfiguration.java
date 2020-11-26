@@ -33,7 +33,7 @@ import org.springframework.core.Ordered;
  * @author whd.java@gmail.com
  * @date 2020/06/17 17:26
  * @apiNote Describe the function of this class in one sentence
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Configuration
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)

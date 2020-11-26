@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * @author whd.java@gmail.com
  * @date 2020/06/17 14:38
  * @apiNote Annotation to mark a DataSource bean to be configured to use a first choose.
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Inherited
 @Documented

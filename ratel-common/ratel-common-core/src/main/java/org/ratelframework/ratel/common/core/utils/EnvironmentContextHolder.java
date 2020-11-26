@@ -16,7 +16,7 @@ import java.util.List;
  * @author whd.java@gmail.com
  * @date 2019/10/10 11:17
  * @apiNote 用户属性松散绑定为对象和其他数据结构
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Slf4j
 @Component

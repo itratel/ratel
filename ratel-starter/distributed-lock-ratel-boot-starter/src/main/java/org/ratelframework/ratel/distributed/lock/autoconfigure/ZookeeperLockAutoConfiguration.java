@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * <p>ZookeeperLockAutoConfiguration<p/>
  * @author whd.java@gmail.com
  * @date 2020/6/17 15:49
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Configuration
 @EnableConfigurationProperties(ZookeeperProperties.class)

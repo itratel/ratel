@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @author whd.java@gmail.com
  * @date 2020/6/17 18:14
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Data
 @ConfigurationProperties(prefix = "ratel.zookeeper")

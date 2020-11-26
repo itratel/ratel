@@ -4,7 +4,7 @@ package org.ratelframework.ratel.authorization.oauth2.server.constant;
  * @author whd.java@gmail.com
  * @date 2019/10/24 11:10
  * @apiNote Describe the function of this class in one sentence
- * @since 0.0.1
+ * @since 1.0.0
  */
 public class SecurityConstants {
 

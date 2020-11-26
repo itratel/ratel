@@ -10,7 +10,7 @@ import static org.ratelframework.ratel.order.feign.ProductFeignService.PRODUCT_S
  * @author whd.java@gmail.com
  * @date 2019/10/24 13:49
  * @apiNote Describe the function of this class in one sentence
- * @since 0.0.1
+ * @since 1.0.0
  */
 @FeignClient(value = PRODUCT_SERVICE_NAME, path = "/product")
 public interface ProductFeignService {

@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author whd.java@gmail.com
  * @date 2019/10/22 15:00
  * @apiNote Describe the function of this class in one sentence
- * @since 0.0.1
+ * @since 1.0.0
  */
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

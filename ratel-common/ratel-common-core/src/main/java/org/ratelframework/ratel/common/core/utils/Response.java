@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author whd.java@gmail.com
  * @date 2019/10/22 15:03
  * @apiNote Response Body
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Data
 @Builder

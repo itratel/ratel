@@ -7,7 +7,7 @@ import lombok.Getter;
  * @author whd.java@gmail.com
  * @date 2019/10/24 10:17
  * @apiNote Describe the function of this class in one sentence
- * @since 0.0.1
+ * @since 1.0.0
  */
 @AllArgsConstructor
 public enum GrantTypeEnum {
@@ -35,9 +35,9 @@ public enum GrantTypeEnum {
     ;
 
     @Getter
-    private String key;
+    private final String key;
 
     @Getter
-    private String value;
+    private final String value;
 
 }

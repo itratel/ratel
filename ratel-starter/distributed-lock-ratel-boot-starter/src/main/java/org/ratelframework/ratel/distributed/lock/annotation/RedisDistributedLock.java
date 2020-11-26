@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author whd.java@gmail.com
  * @date 2020/6/19 10:28
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Inherited
 @Documented

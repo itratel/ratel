@@ -27,7 +27,7 @@ import javax.sql.DataSource;
  * MyBatis support related auto-configuration.
  * @author whd.java@gmail.com
  * @date 2020/6/17 14:34
- * @since 0.0.1
+ * @since 1.0.0
  */
 @Configuration
 @AutoConfigureAfter({DataSourceAutoConfiguration.class})
