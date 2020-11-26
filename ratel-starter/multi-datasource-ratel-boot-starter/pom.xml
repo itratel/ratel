@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.ratelframework</groupId>
     <artifactId>ratel-starter</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>multi-datasource-ratel-boot-starter</artifactId>
   <name>multi-datasource-ratel-boot-starter</name>
