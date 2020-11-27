@@ -57,7 +57,7 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
      */
     @Bean
     @Override
-    public AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
@@ -77,8 +77,8 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-//                .anyRequest().authenticated()
+                .antMatchers("/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin();
     }
@@ -99,41 +99,11 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
      * {@link HttpSecurity#getSharedObject(Class)} for use with other
      * {@link SecurityContextConfigurer} (i.e. RememberMeConfigurer )
      * </p>
-     *
-     * <p>
-     * For example, the following configuration could be used to register in memory
-     * authentication that exposes an in memory {@link UserDetailsService}:
-     * </p>
-     *
-     * <pre>
-     * &#064;Override
-     * protected void configure(AuthenticationManagerBuilder auth) {
-     * 	auth
-     * 	// enable in memory based authentication with a user named
-     * 	// &quot;user&quot; and &quot;admin&quot;
-     * 	.inMemoryAuthentication().withUser(&quot;user&quot;).password(&quot;password&quot;).roles(&quot;USER&quot;).and()
-     * 			.withUser(&quot;admin&quot;).password(&quot;password&quot;).roles(&quot;USER&quot;, &quot;ADMIN&quot;);
-     * }
-     *
-     * // Expose the UserDetailsService as a Bean
-     * &#064;Bean
-     * &#064;Override
-     * public UserDetailsService userDetailsServiceBean() throws Exception {
-     * 	return super.userDetailsServiceBean();
-     * }
-     *
-     * </pre>
-     *
      * @param auth the {@link AuthenticationManagerBuilder} to use
      * @throws Exception Exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService);
-        auth.inMemoryAuthentication()
-                // 在内存中创建用户并为密码加密
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER")
-                .and()
-                .withUser("admin").password(passwordEncoder().encode("123456")).roles("ADMIN");
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 }

@@ -8,7 +8,6 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>ratel-common-security</artifactId>
 
 
@@ -27,7 +26,7 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!-- 元素据生成-->
+        <!-- 元数据生成-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -37,11 +36,13 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
