@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author whd.java@gmail.com
  * @date 2019/2/1
  */
-@FeignClient(value = ServiceNameConstants.UMPS_SERVICE)
+@FeignClient(value = ServiceNameConstants.UMPS_SERVICE, path = "/upms")
 public interface RemoteUserService {
 	/**
 	 * 通过用户名查询用户、角色信息
@@ -19,7 +19,7 @@ public interface RemoteUserService {
 	 * @param username 用户名
 	 * @return {@link Response<UserInfo>}
 	 */
-	@GetMapping("/user/info/{username}")
+	@GetMapping(value = "/user/info/{username}")
     Response<UserInfo> info(@PathVariable("username") String username);
 
 	/**

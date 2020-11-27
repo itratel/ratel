@@ -13,6 +13,11 @@
     <dependencies>
         <dependency>
             <groupId>org.ratelframework</groupId>
+            <artifactId>ratel-upms-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ratelframework</groupId>
             <artifactId>ratel-common-core</artifactId>
             <version>${project.version}</version>
         </dependency>

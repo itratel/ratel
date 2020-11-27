@@ -2,7 +2,6 @@ package org.ratelframework.ratel.authorization.oauth2.server;
 
 import org.ratelframework.ratel.common.core.annotation.RatelCloudApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author whd.java@gmail.com
@@ -11,7 +10,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @since 1.0.0
  */
 @RatelCloudApplication
-@EnableFeignClients(basePackages = "org.ratelframework.ratel.upms.api")
 public class RatelAuthServerApplication {
 
     public static void main(String[] args) {

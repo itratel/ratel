@@ -1,0 +1,51 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /client
+
+spring:
+  application:
+    name: auth-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: c0797ecb-301e-4137-84b7-7f14964712df
+  profiles:
+    active: dev
+  security:
+    user:
+      name: ratel
+      password: 123456
+  redis:
+    host: localhost
+    password: 123456
+    port: 6379
+  datasource:
+    jdbc-url: jdbc:mysql://localhost:3306/ratel?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: cdslyk912
+    druid:
+      min-idle: 5
+      max-active: 10
+      initial-size: 2
+      validation-query: SELECT 1
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      max-pool-prepared-statement-per-connection-size: 20
+  main:
+    allow-bean-definition-overriding: true
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: '*'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
