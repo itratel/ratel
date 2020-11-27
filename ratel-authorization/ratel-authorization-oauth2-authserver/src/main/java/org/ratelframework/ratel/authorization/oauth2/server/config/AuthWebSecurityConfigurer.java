@@ -21,7 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor(onConstructor__=@Autowired)
-public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapter {
+public class AuthWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
     private final UserDetailsService userDetailsService;
@@ -51,7 +51,7 @@ public class AuthorizationSecurityConfigurer extends WebSecurityConfigurerAdapte
     }
 
     /***
-     * 认证管理器
+     * 注册认证管理器
      * @return {@link AuthenticationManager}
      * @throws Exception 注册认证管理器的异常信息
      */
