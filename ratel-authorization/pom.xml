@@ -12,7 +12,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>ratel-authorization-oauth2-resource-server</module>
         <module>ratel-authorization-oauth2-authserver</module>
         <module>ratel-authorization-oauth2-client</module>
     </modules>

@@ -1,11 +1,11 @@
 server:
-  port: 8082
+  port: 8084
   servlet:
     context-path: /client
 
 spring:
   application:
-    name: auth-server
+    name: auth-client
   cloud:
     nacos:
       discovery:

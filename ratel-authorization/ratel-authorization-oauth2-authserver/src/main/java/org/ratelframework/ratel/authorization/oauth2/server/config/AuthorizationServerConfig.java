@@ -72,7 +72,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 认证服务端点配置
      * 用来配置令牌的访问端点和令牌服务（token services）
      * @param endpoints 端点
-     * @throws Exception
+     * @throws Exception Exception
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -86,13 +86,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //客户端信息
                 .userDetailsService(userDetailsService)
                 //允许post方式访问令牌
-                .allowedTokenEndpointRequestMethods(HttpMethod.POST);
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST, HttpMethod.GET);
     }
 
     /***
      * 用来配置令牌端点的安全策略
      * @param security security
-     * @throws Exception
+     * @throws Exception Exception
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
