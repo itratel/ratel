@@ -59,7 +59,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //可以访问的资源列表
                 .resourceIds("res1")
                 //授权模式
-                .authorizedGrantTypes("authorization_code", "password", "client-credentials", "implicit", "refresh_token")
+                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
                 //允许授权的范围，相当于客户端的权限
                 .scopes("all")
                 //跳转到授权页面

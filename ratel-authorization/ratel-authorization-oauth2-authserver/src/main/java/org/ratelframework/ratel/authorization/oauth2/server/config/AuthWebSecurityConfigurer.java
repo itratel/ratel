@@ -80,8 +80,8 @@ public class AuthWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("").loginProcessingUrl("/token/form");
+                .formLogin();
+//                .loginPage("").loginProcessingUrl("/token/form");
     }
 
 
