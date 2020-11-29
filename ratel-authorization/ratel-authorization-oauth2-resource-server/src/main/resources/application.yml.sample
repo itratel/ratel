@@ -20,7 +20,7 @@ spring:
 security:
   oauth2:
     resource:
-      #从authServer认证中心验证token
+      #从sso认证中心验证token
       token-info-uri: http://localhost:8082/oauth/check_token
       prefer-token-info: true
     client:

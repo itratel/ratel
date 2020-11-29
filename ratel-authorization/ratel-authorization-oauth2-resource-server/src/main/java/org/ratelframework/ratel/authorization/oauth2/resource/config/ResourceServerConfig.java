@@ -69,7 +69,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public ResourceServerTokenServices tokenServices() {
         RemoteTokenServices remoteTokenServices = new RemoteTokenServices();
         //资源服务会调用授权认证服务的验证token的接口请求数据
-        remoteTokenServices.setCheckTokenEndpointUrl("http://localhost:8082/authserver/oauth/check_token");
+        remoteTokenServices.setCheckTokenEndpointUrl("http://localhost:8082/sso/oauth/check_token");
         remoteTokenServices.setClientId("client1");
         remoteTokenServices.setClientSecret("secret");
         return remoteTokenServices;

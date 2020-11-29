@@ -1,9 +1,9 @@
 ### 用来向认证中心获取授权
-GET http://localhost:8082/authserver/oauth/authorize?client_id=client1&client_secret=secret&response_type=code&scope=all&redirect_uri=http://www.baidu.com
+GET http://localhost:8082/sso/oauth/authorize?client_id=client1&client_secret=secret&response_type=code&scope=all&redirect_uri=http://www.baidu.com
 Accept: application/json
 
 ### 获取token
-POST http://client1:secret@localhost:8082/authserver/oauth/token
+POST http://client1:secret@localhost:8082/sso/oauth/token
 Content-Type: application/json
 
 {

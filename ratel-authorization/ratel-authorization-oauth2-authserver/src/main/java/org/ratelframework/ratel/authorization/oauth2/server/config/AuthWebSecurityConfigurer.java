@@ -28,12 +28,12 @@ public class AuthWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     /***
      * 获取授权码的接口方法
-     * GET  http://localhost:8082/authserver/oauth/authorize?client_id=client1&response_type=code&scope=all&redirect_uri=http://www.baidu.com
+     * GET  http://localhost:8082/sso/oauth/authorize?client_id=client1&response_type=code&scope=all&redirect_uri=http://www.baidu.com
      */
 
     /***
      * 获取token的接口方法
-     * POST http://client1:123456@localhost:8082/authserver/oauth/token
+     * POST http://client1:123456@localhost:8082/sso/oauth/token
      * client_id: client1
      * client_secret: secret
      * grant_type: authorization_code
@@ -80,7 +80,8 @@ public class AuthWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("").loginProcessingUrl("/token/form");
     }
 
 

@@ -1,11 +1,11 @@
 server:
   port: 8082
   servlet:
-    context-path: /authserver
+    context-path: /sso
 
 spring:
   application:
-    name: auth-server
+    name: sso-server
   cloud:
     nacos:
       discovery:
