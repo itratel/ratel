@@ -72,6 +72,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenServices(tokenServices())
                 //客户端信息
                 .userDetailsService(userDetailsService)
+                //自定义token校验页面
+                .pathMapping("/oauth/confirm_access", "/token/confirm_access")
                 //允许post方式访问令牌
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST, HttpMethod.GET);
     }

@@ -81,7 +81,6 @@ public class AuthWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin();
-//                .loginPage("").loginProcessingUrl("/token/form");
     }
 
 

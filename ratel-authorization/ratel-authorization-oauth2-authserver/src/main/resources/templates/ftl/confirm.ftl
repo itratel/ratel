@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>Ratel 第三方授权</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/signin.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/signin.css"/>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
             <p class="navbar-text navbar-right">
-                <a target="_blank" href="https://pig4cloud.com">技术支持</a>
+                <a target="_blank" href="https://itratel.com">技术支持</a>
             </p>
             <p class="navbar-text navbar-right">
                 <a target="_blank" href="https://itratel.com">${user.username}</a>
@@ -26,7 +26,7 @@
     </div>
 </nav>
 <div style="padding-top: 80px;width: 300px; color: #555; margin:0px auto;">
-    <form id='confirmationForm' name='confirmationForm' action="/oauth/authorize" method='post'>
+    <form id='confirmationForm' name='confirmationForm' action="/sso/oauth/authorize" method='post'>
         <input name='user_oauth_approval' value='true' type='hidden'/>
         <p>
             <a href="${app.website!''}" target="_blank">${app.appName!'未定义应用名称'}</a> 将获得以下权限：</p>

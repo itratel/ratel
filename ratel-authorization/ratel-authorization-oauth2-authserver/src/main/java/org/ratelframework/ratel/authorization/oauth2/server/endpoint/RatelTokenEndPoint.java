@@ -1,15 +1,16 @@
 package org.ratelframework.ratel.authorization.oauth2.server.endpoint;
 
-import cn.hutool.core.map.MapUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ratelframework.ratel.common.security.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.AuthorizationRequest;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +25,13 @@ import java.util.Map;
  * @date 2020/11/29 11:47
  * @since 1.0.0
  */
+@Slf4j
+@RestController
+@RequestMapping("/token")
 @RequiredArgsConstructor(onConstructor__=@Autowired)
 public class RatelTokenEndPoint {
 
     private final ClientDetailsService clientDetailsService;
-
-    private final TokenStore tokenStore;
 
     /**
      * 认证页面
@@ -56,7 +58,6 @@ public class RatelTokenEndPoint {
         @SuppressWarnings("unchecked")
         Map<String, Object> scopeList = (Map<String, Object>) request.getAttribute("scopes");
         modelAndView.addObject("scopeList", scopeList.keySet());
-
         Object auth = session.getAttribute("authorizationRequest");
         if (auth != null) {
             AuthorizationRequest authorizationRequest = (AuthorizationRequest) auth;
