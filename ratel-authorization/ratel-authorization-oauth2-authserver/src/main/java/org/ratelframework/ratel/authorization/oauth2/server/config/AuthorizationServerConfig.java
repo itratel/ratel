@@ -1,6 +1,7 @@
 package org.ratelframework.ratel.authorization.oauth2.server.config;
 
 import lombok.RequiredArgsConstructor;
+import org.ratelframework.ratel.common.security.service.RatelClientDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,30 +16,32 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
-import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+
+import javax.sql.DataSource;
 
 /**
  * @author whd.java@gmail.com
  * @date 2019/10/23 18:06
- * @since 1.0.0
  * @see org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurer
+ * @since 1.0.0
  */
 @Configuration
 @EnableAuthorizationServer
-@RequiredArgsConstructor(onConstructor__=@Autowired)
+@RequiredArgsConstructor(onConstructor__ = @Autowired)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private final AuthenticationManager authenticationManager;
 
-    private final ClientDetailsService clientDetailsService;
-
     private final UserDetailsService userDetailsService;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final DataSource dataSource;
 
     /***
      * 配置appId和appSecret和callbackUrl
@@ -49,23 +52,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients
-                //使用内存存储
-                .inMemory()
-                //client_id
-                .withClient("client1")
-                //客户端的密钥
-                .secret(passwordEncoder.encode("secret"))
-                //可以访问的资源列表
-                .resourceIds("res1")
-                //授权模式
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
-                //允许授权的范围，相当于客户端的权限
-                .scopes("all")
-                //跳转到授权页面
-                .autoApprove(false)
-                //验证回调地址
-                .redirectUris("http://www.baidu.com");
+        clients.withClientDetails(clientDetailsService());
     }
 
     /***
@@ -115,7 +102,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public TokenStore tokenStore() {
         //使用内存来存储令牌（普通令牌）
-        return new InMemoryTokenStore();
+        return new JdbcTokenStore(dataSource);
     }
 
     /***
@@ -127,14 +114,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         //客户端详情服务
-        tokenServices.setClientDetailsService(clientDetailsService);
+        tokenServices.setClientDetailsService(clientDetailsService());
         //是否产生刷新令牌
         tokenServices.setSupportRefreshToken(true);
         //令牌存储策略
         tokenServices.setTokenStore(tokenStore());
         //令牌默认有效期2小时
         tokenServices.setAccessTokenValiditySeconds(7200);
-        //数显令牌默认有效期三天
+        //刷新令牌默认有效期三天
         tokenServices.setRefreshTokenValiditySeconds(259200);
         //token增强
         tokenServices.setTokenEnhancer((accessToken, authentication) -> {
@@ -151,7 +138,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Bean
     public AuthorizationCodeServices authorizationCodeServices() {
-        return new InMemoryAuthorizationCodeServices();
+        return new JdbcAuthorizationCodeServices(dataSource);
+    }
+
+    /***
+     * 注册客户端详情服务
+     * @return {@link ClientDetailsService}
+     */
+    @Bean
+    public ClientDetailsService clientDetailsService() {
+        RatelClientDetailsService clientDetailsService = new RatelClientDetailsService(dataSource);
+        clientDetailsService.setPasswordEncoder(passwordEncoder);
+        return clientDetailsService;
     }
 
 }
