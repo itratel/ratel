@@ -22,20 +22,15 @@ spring:
     password: 123456
     port: 6379
   datasource:
-    jdbc-url: jdbc:mysql://localhost:3306/ratel?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/ratel?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: cdslyk912
-    druid:
-      min-idle: 5
-      max-active: 10
-      initial-size: 2
-      validation-query: SELECT 1
-      max-wait: 60000
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
-      max-pool-prepared-statement-per-connection-size: 20
+    hikari:
+      max-lifetime: 30000
+      maximum-pool-size: 20
+      minimum-idle: 5
   main:
     allow-bean-definition-overriding: true
 management:
