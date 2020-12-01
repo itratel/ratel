@@ -2,6 +2,7 @@ package org.ratelframework.ratel.upms;
 
 import org.ratelframework.ratel.common.core.annotation.RatelCloudApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import org.springframework.boot.SpringApplication;
  * @date 2019/11/1 17:56
  * @since 1.0.0
  */
+@EnableCaching
 @RatelCloudApplication
 public class RatelUpmsApplication {
 

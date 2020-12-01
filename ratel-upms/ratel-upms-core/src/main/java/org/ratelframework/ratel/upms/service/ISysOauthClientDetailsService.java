@@ -5,12 +5,28 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 终端信息表 服务类
+ * 客户端信息 服务类
  * </p>
  *
  * @author whd.java@gmail.com
- * @since 2019-11-01
+ * @date 2020/11/21 15:53
+ * @since 1.0.0
  */
 public interface ISysOauthClientDetailsService extends IService<SysOauthClientDetails> {
+
+
+    /**
+     * 通过客户端id删除客户端
+     * @param id client id
+     * @return {@link Boolean}
+     */
+    Boolean removeClientDetailsById(String id);
+
+    /**
+     * 更新客户端信息
+     * @param clientDetails client info
+     * @return {@link Boolean}
+     */
+    Boolean updateClientDetailsById(SysOauthClientDetails clientDetails);
 
 }
