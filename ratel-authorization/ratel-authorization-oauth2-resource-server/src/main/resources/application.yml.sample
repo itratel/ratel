@@ -1,7 +1,7 @@
 server:
   port: 8083
   servlet:
-    context-path: /resource-server
+    context-path: /resource
 
 spring:
   application:
