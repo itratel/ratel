@@ -44,7 +44,7 @@ public class SysMenuController {
      * @return 当前用户的树形菜单
      */
     @GetMapping
-    public Response getUserMenu() {
+    public Response<List<MenuTree>> getUserMenu() {
         // 获取符合条件的菜单
         Set<MenuVO> all = new HashSet<>();
         SecurityUtils.getRoles()
@@ -63,7 +63,7 @@ public class SysMenuController {
      * @return 树形菜单
      */
     @GetMapping(value = "/tree")
-    public Response getTree() {
+    public Response<List<MenuTree>> getTree() {
         return Response.ok(TreeUtil.buildTree(sysMenuService.list(Wrappers.emptyWrapper()), -1));
     }
 
@@ -74,11 +74,12 @@ public class SysMenuController {
      * @return 属性集合
      */
     @GetMapping("/tree/{roleId}")
-    public List getRoleTree(@PathVariable Integer roleId) {
-        return sysMenuService.getMenuByRoleId(roleId)
+    public Response<List<Integer>> getRoleTree(@PathVariable Integer roleId) {
+        List<Integer> list = sysMenuService.getMenuByRoleId(roleId)
                 .stream()
                 .map(MenuVO::getMenuId)
                 .collect(Collectors.toList());
+        return Response.ok(list);
     }
 
     /**
@@ -88,7 +89,7 @@ public class SysMenuController {
      * @return 菜单详细信息
      */
     @GetMapping("/{id}")
-    public Response getById(@PathVariable Integer id) {
+    public Response<SysMenu> getById(@PathVariable Integer id) {
         return Response.ok(sysMenuService.getById(id));
     }
 
@@ -101,7 +102,7 @@ public class SysMenuController {
     @RatelLog("新增菜单")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys_menu_add')")
-    public Response save(@Valid @RequestBody SysMenu sysMenu) {
+    public Response<Boolean> save(@Valid @RequestBody SysMenu sysMenu) {
         return Response.ok(sysMenuService.save(sysMenu));
     }
 
@@ -114,8 +115,8 @@ public class SysMenuController {
     @RatelLog("删除菜单")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_menu_del')")
-    public Response removeById(@PathVariable Integer id) {
-        return sysMenuService.removeMenuById(id);
+    public Response<Boolean> removeById(@PathVariable Integer id) {
+        return Response.ok(sysMenuService.removeMenuById(id));
     }
 
     /**
@@ -127,7 +128,7 @@ public class SysMenuController {
     @RatelLog("更新菜单")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('sys_menu_edit')")
-    public Response update(@Valid @RequestBody SysMenu sysMenu) {
+    public Response<Boolean> update(@Valid @RequestBody SysMenu sysMenu) {
         return Response.ok(sysMenuService.updateMenuById(sysMenu));
     }
 

@@ -1,6 +1,7 @@
 package org.ratelframework.ratel.upms.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class SysLogController {
      * @return
      */
     @GetMapping("/page")
-    public Response getLogPage(Page page, SysLog sysLog) {
+    public Response<IPage<SysLog>> getLogPage(Page<SysLog> page, SysLog sysLog) {
         return Response.ok(sysLogService.page(page, Wrappers.query(sysLog)));
     }
 
@@ -48,7 +49,7 @@ public class SysLogController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_log_del')")
-    public Response removeById(@PathVariable Long id) {
+    public Response<Boolean> removeById(@PathVariable Long id) {
         return Response.ok(sysLogService.removeById(id));
     }
 
@@ -60,7 +61,7 @@ public class SysLogController {
      */
 //    @Inner
     @PostMapping
-    public Response save(@Valid @RequestBody SysLog sysLog) {
+    public Response<Boolean> save(@Valid @RequestBody SysLog sysLog) {
         return Response.ok(sysLogService.save(sysLog));
     }
 

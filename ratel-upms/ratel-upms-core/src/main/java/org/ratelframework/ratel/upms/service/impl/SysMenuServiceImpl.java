@@ -43,12 +43,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     @CacheEvict(value = "menu_details", allEntries = true)
-    public Response removeMenuById(Integer id) {
+    public Boolean removeMenuById(Integer id) {
         // 查询父节点为当前节点的节点
         List<SysMenu> menuList = this.list(Wrappers.<SysMenu>query()
                 .lambda().eq(SysMenu::getParentId, id));
         if (CollUtil.isNotEmpty(menuList)) {
-            return Response.error("菜单含有下级不能删除");
+            throw new RuntimeException("菜单含有下级不能删除");
         }
 
         sysRoleMenuMapper
@@ -56,7 +56,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
                         .lambda().eq(SysRoleMenu::getMenuId, id));
 
         //删除当前菜单及其子菜单
-        return Response.ok(this.removeById(id));
+        return this.removeById(id);
     }
 
     @Override

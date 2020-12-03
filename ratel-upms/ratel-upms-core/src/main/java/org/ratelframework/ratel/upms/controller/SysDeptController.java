@@ -4,6 +4,7 @@ package org.ratelframework.ratel.upms.controller;
 import lombok.RequiredArgsConstructor;
 import org.ratelframework.ratel.common.core.utils.Response;
 import org.ratelframework.ratel.logger.annotation.RatelLog;
+import org.ratelframework.ratel.upms.api.dto.DeptTree;
 import org.ratelframework.ratel.upms.api.entity.SysDept;
 import org.ratelframework.ratel.upms.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -46,7 +48,7 @@ public class SysDeptController {
      * @return 树形菜单
      */
     @GetMapping(value = "/tree")
-    public Response listDeptTrees() {
+    public Response<List<DeptTree>> listDeptTrees() {
         return Response.ok(sysDeptService.listDeptTrees());
     }
 
@@ -56,7 +58,7 @@ public class SysDeptController {
      * @return 树形菜单
      */
     @GetMapping(value = "/user-tree")
-    public Response listCurrentUserDeptTrees() {
+    public Response<List<DeptTree>> listCurrentUserDeptTrees() {
         return Response.ok(sysDeptService.listCurrentUserDeptTrees());
     }
 
@@ -69,7 +71,7 @@ public class SysDeptController {
     @RatelLog("添加部门")
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys_dept_add')")
-    public Response save(@Valid @RequestBody SysDept sysDept) {
+    public Response<Boolean> save(@Valid @RequestBody SysDept sysDept) {
         return Response.ok(sysDeptService.saveDept(sysDept));
     }
 
@@ -82,7 +84,7 @@ public class SysDeptController {
     @RatelLog("删除部门")
     @DeleteMapping("/{id}")
     @PreAuthorize("@pms.hasPermission('sys_dept_del')")
-    public Response removeById(@PathVariable Integer id) {
+    public Response<Boolean> removeById(@PathVariable Integer id) {
         return Response.ok(sysDeptService.removeDeptById(id));
     }
 
@@ -95,7 +97,7 @@ public class SysDeptController {
     @RatelLog("编辑部门")
     @PutMapping
     @PreAuthorize("@pms.hasPermission('sys_dept_edit')")
-    public Response update(@Valid @RequestBody SysDept sysDept) {
+    public Response<Boolean> update(@Valid @RequestBody SysDept sysDept) {
         sysDept.setUpdateTime(LocalDateTime.now());
         return Response.ok(sysDeptService.updateDeptById(sysDept));
     }

@@ -16,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * <p>
@@ -39,7 +40,7 @@ public class SysDictController {
      * @return 字典信息
      */
     @GetMapping("/{id}")
-    public Response getById(@PathVariable Integer id) {
+    public Response<SysDict> getById(@PathVariable Integer id) {
         return Response.ok(sysDictService.getById(id));
     }
 
@@ -50,7 +51,7 @@ public class SysDictController {
      * @return 分页对象
      */
     @GetMapping("/page")
-    public Response<IPage> getDictPage(Page page, SysDict sysDict) {
+    public Response<IPage<SysDict>> getDictPage(Page<SysDict> page, SysDict sysDict) {
         return Response.ok(sysDictService.page(page, Wrappers.query(sysDict)));
     }
 
@@ -62,7 +63,7 @@ public class SysDictController {
      */
     @GetMapping("/type/{type}")
     @Cacheable(value = "dict_details", key = "#type")
-    public Response getDictByType(@PathVariable String type) {
+    public Response<List<SysDict>> getDictByType(@PathVariable String type) {
         return Response.ok(sysDictService.list(Wrappers
                 .<SysDict>query().lambda()
                 .eq(SysDict::getType, type)));
@@ -78,7 +79,7 @@ public class SysDictController {
     @PostMapping
     @CacheEvict(value = "dict_details", key = "#sysDict.type")
     @PreAuthorize("@pms.hasPermission('sys_dict_add')")
-    public Response save(@Valid @RequestBody SysDict sysDict) {
+    public Response<Boolean> save(@Valid @RequestBody SysDict sysDict) {
         return Response.ok(sysDictService.save(sysDict));
     }
 
@@ -93,7 +94,7 @@ public class SysDictController {
     @DeleteMapping("/{id}/{type}")
     @CacheEvict(value = "dict_details", key = "#type")
     @PreAuthorize("@pms.hasPermission('sys_dict_del')")
-    public Response removeById(@PathVariable Integer id, @PathVariable String type) {
+    public Response<Boolean> removeById(@PathVariable Integer id, @PathVariable String type) {
         return Response.ok(sysDictService.removeById(id));
     }
 
@@ -107,7 +108,7 @@ public class SysDictController {
     @RatelLog("修改字典")
     @CacheEvict(value = "dict_details", key = "#sysDict.type")
     @PreAuthorize("@pms.hasPermission('sys_dict_edit')")
-    public Response updateById(@Valid @RequestBody SysDict sysDict) {
+    public Response<Boolean> updateById(@Valid @RequestBody SysDict sysDict) {
         return Response.ok(sysDictService.updateById(sysDict));
     }
 

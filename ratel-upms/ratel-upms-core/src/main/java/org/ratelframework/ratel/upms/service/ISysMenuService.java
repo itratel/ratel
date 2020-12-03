@@ -31,7 +31,7 @@ public interface ISysMenuService extends IService<SysMenu> {
      * @param id 菜单ID
      * @return 成功、失败
      */
-    Response removeMenuById(Integer id);
+    Boolean removeMenuById(Integer id);
 
     /**
      * 更新菜单信息
